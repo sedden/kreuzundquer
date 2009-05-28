@@ -1,0 +1,27 @@
+/*
+
+ Layout und Design für: 
+  kreunzundquer e.V. http://www.kreuzundquer-ev.de
+
+ Author:
+  Stefan Jenkner <stefan@jenkner.org>
+
+*/
+
+
+body { margin: 0; font-family: Verdana, Arial, sans-serif; font-size: .6em; }
+
+body { background-color: #fff; }
+body { background-color: #eee; }
+
+div p { border:1px solid #333; padding:10px; }
+
+.container { background-color:#333; }
+.container { background-color:#fff; }
+.container div p { background-color: #fff; }
+
+/*
+.container div h1,
+.container div h2,
+.container div h3 { background-color: #fff; }
+*/
