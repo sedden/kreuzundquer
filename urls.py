@@ -50,3 +50,9 @@ if 'wiki' in settings.INSTALLED_APPS:
     urlpatterns += patterns('',
         (r'^wiki/', include('wiki.urls')),
     )
+
+# Django Page CMS
+if 'pages' in settings.INSTALLED_APPS:
+    urlpatterns += patterns('',
+        (r'^pages/', include('pages.urls')),
+    )
