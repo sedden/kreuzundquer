@@ -16,11 +16,11 @@
 
 <div class="container container_12">
 
-<div class='grid_7 prefix_1'>
-		<h1>kreuzundquer e.V.</h1>
+<div id="header" class='grid_7 prefix_2'>
+		<h1><img src="{{ MEDIA_URL }}img/logo.png" alt="kreuzundquer e.V." /></h1>
 </div>
 
-<div class='grid_3 suffix_1'>
+<div class='grid_2 suffix_1'>
 	<ul>
 		{% if user.is_authenticated %}
 			<li><a href="/admin/">{% trans "admin" %}</a></li>
@@ -35,37 +35,29 @@
 <div class='clear'>&nbsp;</div>
 
 <div id="navigation" class='grid_1'>
-	<a href="/angebot/"><img src="{{ MEDIA_URL }}img/button_angebote.png" /></a>
-	<a href="/angebot/"><img src="{{ MEDIA_URL }}img/button_feedback.png" /></a>
-	<a href="/angebot/"><img src="{{ MEDIA_URL }}img/button_mitmachen.png" /></a>
+	<a href="/angebot/"><img src="{{ MEDIA_URL }}img/button_informieren.png" /></a>
+	<a href="/angebot/"><img src="{{ MEDIA_URL }}img/button_helfen.png" /></a>
 </div>
 
 <div id="main" class='grid_10 prefix_1'>
 
-	<div id="title" class='grid_6 alpha'>
-		<h2>{% block title %}Titel{% endblock %}</h2>
-	</div>
+{% block content %}
 
-	<div id="rightcolumn" class='grid_3 suffix_1 omega'>
-		{% block content_right %}<p>Spalte Rechts</p>{% endblock %}
-	</div>
-
-	<div id="content" class='grid_6 alpha omega'>
-		{% block content %}<p>Kein Inhalt</p>{% endblock %}
-	</div>
+{% endblock %}
 
 </div>
 
 <div class='clear'>&nbsp;</div>
 
-<div class='grid_10 prefix_1 suffix_1'><p></p></div>
-
-<div class='clear'>&nbsp;</div>
+<div id="footer" class='grid_10 prefix_1 suffix_1'>
+	<div class='grid_2 suffix_1 alpha'><p>Ich</p></div>
+	<div class='grid_2 prefix_1 suffix_1'><p>Du</p></div>
+	<div class='grid_2 prefix_1 omega'><p>Er</p></div>
+</div>
 
 <div class='clear'>&nbsp;</div>
 
 <!--
-
 <div class='grid_1'>
 <p>60px</p>
 </div><div class='grid_11'>

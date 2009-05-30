@@ -21,21 +21,22 @@ body { background-color: #aca793; }
 
 /*
 div p { border:1px solid #333; padding:10px; }
-*/
 .container div h1,
-.container div h2,
 .container div h3,
 .container div p,
 .container div span { background-color: #fffddd; }
-
-/*
 .container div p { background-color: #fff; }
 */
 
+#title { background: #aca793 url('/static/img/tile_140.png') no-repeat right top; height: 140px; }
+#title h2 { font-size: 24px; margin: 0px 10px; text-align: right; color: #fff; }
+
 #navigation { text-align: right; }
-#navigation a img { border: 0; margin: 10px 0; }
+#navigation a img { border: 0; margin-bottom: 10px; }
 
+#content { word-spacing: 0.5em; line-height: 2em; font-size: 12px; }
+#content p { margin: 0px 0px 14px; }
 
-
-
+#header,
+#footer { margin: 25px 0px; text-align: center; }
 

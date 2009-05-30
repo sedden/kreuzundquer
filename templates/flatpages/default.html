@@ -1,11 +1,23 @@
 {% extends "base.html" %}
 
-{% block title %}
-{{ flatpage.title }}
-{% endblock %}
+{% load markup %}
 
 {% block content %}
-{{ flatpage.content }}
-{{ flatpage.content }}
-{{ flatpage.content }}
+
+	<div id="title" class='grid_2 alpha'>
+		<h2>{{ flatpage.title }}</h2>
+	</div>
+
+	<div id="content" class='grid_6 suffix_1 omega'>
+		{{ flatpage.content|markdown }}
+	</div>
+
+	<div id="title" class='grid_2 alpha'>
+		<h2>{{ flatpage.title }}</h2>
+	</div>
+
+	<div id="content" class='grid_6 suffix_1 omega'>
+		{{ flatpage.content|markdown }}
+	</div>
+
 {% endblock %}
