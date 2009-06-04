@@ -16,123 +16,55 @@
 
 <div class="container container_12">
 
-<div id="header" class='grid_7 prefix_2'>
-		<h1><img src="{{ MEDIA_URL }}img/logo.png" alt="kreuzundquer e.V." /></h1>
-</div>
+	<div id="header" class="grid_10 prefix_1 suffix_1">
+		<div class="grid_4 prefix_1 alpha">
+			<a href="/vision/"><img src="{{ MEDIA_URL }}img/button_vision_hi.png" alt="Vision" /></a>
+			<a href="/team/"><img src="{{ MEDIA_URL }}img/button_team.png" alt="Team" /></a>
+			<a href="/projekte/"><img src="{{ MEDIA_URL }}img/button_projekte.png" alt="Projekte" /></a>
+			<a href="/blog/"><img src="{{ MEDIA_URL }}img/button_blog.png" alt="Blog" /></a>
+		</div>
+		<div class="grid_3 prefix_1 suffix_1 omega right">
+			<a href="/kontakt/"><img src="{{ MEDIA_URL }}img/button_kontakt.png" alt="Kontakt" /></a>
+			<a href="/helfen/"><img src="{{ MEDIA_URL }}img/button_helfen.png" alt="Helfen" /></a>
+		</div>
+	</div>
 
-<div class='grid_2 suffix_1'>
-	<ul>
+	<div id="logo" class="grid_5 prefix_2 suffix_1" >
+		<h1><a href="/"><img src="{{ MEDIA_URL }}img/logo.png" alt="kreuzundquer e.V." /></a></h1>
+	</div>
+
+	<div class="grid_2 suffix_2 right">
 		{% if user.is_authenticated %}
-			<li><a href="/admin/">{% trans "admin" %}</a></li>
-			<li><a href="/logout/">{% trans "logout" %}</a></li>
+			<a href="/admin/">{% trans "admin" %}</a>
+			<a href="/logout/">{% trans "logout" %}</a>
 		{% else %}
-			<li><a href="/login/">{% trans "login" %}</a></li>
-			<li><a href="/register/">{% trans "register" %}</a></li>
+			<a href="/login/">{% trans "login" %}</a>
 		{% endif %}
-	</ul>	
-</div>
+	</div>
 
 <div class='clear'>&nbsp;</div>
 
-<div id="navigation" class='grid_1'>
-	<a href="/angebot/"><img src="{{ MEDIA_URL }}img/button_informieren.png" /></a>
-	<a href="/angebot/"><img src="{{ MEDIA_URL }}img/button_helfen.png" /></a>
-</div>
+	<div id="main" class='grid_9 prefix_2'>
 
-<div id="main" class='grid_10 prefix_1'>
+	{% block content %}
 
-{% block content %}
+	{% endblock %}
 
-{% endblock %}
+	</div>
 
-</div>
+	<div class='clear'>&nbsp;</div>
 
-<div class='clear'>&nbsp;</div>
+	<div id="catcher" class="grid_10 prefix_1 suffix_1 right">
+		<img src="{{ MEDIA_URL }}img/catcher.png" />
+	</div>
 
-<div id="footer" class='grid_10 prefix_1 suffix_1'>
-	<div class='grid_2 suffix_1 alpha'><p>Ich</p></div>
-	<div class='grid_2 prefix_1 suffix_1'><p>Du</p></div>
-	<div class='grid_2 prefix_1 omega'><p>Er</p></div>
-</div>
+	<div class='clear'>&nbsp;</div>
 
-<div class='clear'>&nbsp;</div>
-
-<!--
-<div class='grid_1'>
-<p>60px</p>
-</div><div class='grid_11'>
-<p>860px</p>
-</div><div class='clear'>&nbsp;</div>
-<div class='grid_2'>
-<p>140px</p>
-</div><div class='grid_10'>
-<p>780px</p>
-</div><div class='clear'>&nbsp;</div>
-<div class='grid_3'>
-<p>220px</p>
-</div><div class='grid_9'>
-<p>700px</p>
-</div><div class='clear'>&nbsp;</div>
-<div class='grid_4'>
-<p>300px</p>
-</div><div class='grid_8'>
-<p>620px</p>
-</div><div class='clear'>&nbsp;</div>
-<div class='grid_5'>
-<p>380px</p>
-</div><div class='grid_7'>
-<p>540px</p>
-</div><div class='clear'>&nbsp;</div>
-<div class='grid_6'>
-<p>460px</p>
-</div><div class='grid_6'>
-<p>460px</p>
-</div>
-
-
-<div class='clear'>&nbsp;</div>
-
-
-<div class='clear'>&nbsp;</div>
-<div class='grid_1  suffix_11'>
-<p>60px</p>
-</div><div class='clear'>&nbsp;</div>
-<div class='grid_1 prefix_1 suffix_10'>
-<p>60px</p>
-</div><div class='clear'>&nbsp;</div>
-<div class='grid_1 prefix_2 suffix_9'>
-<p>60px</p>
-</div><div class='clear'>&nbsp;</div>
-<div class='grid_1 prefix_3 suffix_8'>
-<p>60px</p>
-</div><div class='clear'>&nbsp;</div>
-<div class='grid_1 prefix_4 suffix_7'>
-<p>60px</p>
-</div><div class='clear'>&nbsp;</div>
-<div class='grid_1 prefix_5 suffix_6'>
-<p>60px</p>
-</div><div class='clear'>&nbsp;</div>
-<div class='grid_1 prefix_6 suffix_5'>
-<p>60px</p>
-</div><div class='clear'>&nbsp;</div>
-<div class='grid_1 prefix_7 suffix_4'>
-<p>60px</p>
-</div><div class='clear'>&nbsp;</div>
-<div class='grid_1 prefix_8 suffix_3'>
-<p>60px</p>
-</div><div class='clear'>&nbsp;</div>
-<div class='grid_1 prefix_9 suffix_2'>
-<p>60px</p>
-</div><div class='clear'>&nbsp;</div>
-<div class='grid_1 prefix_10 suffix_1'>
-<p>60px</p>
-</div><div class='clear'>&nbsp;</div>
-<div class='grid_1 prefix_11 suffix_0'>
-<p>60px</p>
-</div>
-	<div class="clear">&nbsp;</div>
--->
-
+	<div id="footer" class="grid_10 prefix_1 suffix_1">
+		<div class="grid_2 prefix_7 suffix_1 alpha omega right">
+			<a href="/impressum/"><img src="{{ MEDIA_URL }}img/button_impressum.png" alt="Impressum" /></a>
+		</div>
+	</div>
 </div>
 
 
