@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% load markup objectlist %}
+
+
+{% block catcher %}
+	<img src="{{ MEDIA_URL }}img/start.png" alt="kreuzundqeuer e.V."/>
+{% endblock %}
+
+{% block content %}
+
+	<div class="grid_2 alpha title">
+		<h2>{{ flatpage.title }}</h2>
+	</div>
+
+	<div class="grid_6 omega content">
+		{{ flatpage.content|markdown }}
+	</div>
+
+
+	{% get_object_list blog entry as entries %}
+
+	<div class="grid_2 alpha title">
+		<h2>Neues im Blog</h2>
+	</div>
+
+	<div class="grid_6 omega content">
+
+		{% for object in entries|slice:":3" %}
+			{% include "blog/entry_preview.html" %}
+		{% endfor %}
+	</div>
+
+{% endblock %}

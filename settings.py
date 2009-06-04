@@ -62,6 +62,10 @@ ADMIN_MEDIA_PREFIX = '/media/'
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '^b@a&fmybr=g5&i#dg106f8-out^7v3ch&z-rb6c30pglh5)nn'
 
+# Login
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
+
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
@@ -94,19 +98,6 @@ TEMPLATE_DIRS = (
     path.join(PRJ_DIR,'templates'),
 )
 
-#TINYMCE_JS_URL = MEDIA_URL + 'js/tiny_mce/tiny_mce.js'
-#TINYMCE_JS_ROOT = MEDIA_URL + 'js/tiny_mce'
-TINYMCE_DEFAULT_CONFIG = {
-    'plugins': "table,spellchecker,paste",
-    'theme': "advanced",
-    'theme_advanced_toolbar_location': "top",
-    'gecko_spellcheck': "true",
-    'verify_html': "true",
-    'theme_advanced_blockformats': "p,h2,h3,blockquote,code"
-}
-TINYMCE_SPELLCHECKER = True
-TINYMCE_COMPRESSOR = False
-
 MARKITUP_SET = 'markitup/sets/markdown'
 MARKITUP_SKIN = 'markitup/skins/simple'
 MARKITUP_PREVIEW_FILTER = ('markdown.markdown', {'safe_mode': True})
@@ -121,18 +112,15 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.flatpages',
     'django.contrib.markup',
-    #'rosetta',
-    #'tinymce',
-    #'reversion',
+    'django.contrib.sitemaps',
+    'django.contrib.comments',
+    'reversion',
+    'blog',
     #'dbtemplates',
     'flatpages',
     'markitup',
     #'wiki',
     'tagging',
     #'messages',
-    #'filebrowser',
     #'contact_form',
-    #'mptt',
-    #'pages',
 )
-

@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% load markup %}
+{% load comments i18n %}
+{# load pingback_tags #}
+{% load tagging_tags %}
+{% load ipernity %}
+
+{% block titlehead %} &bull; {{ object.title }} {% endblock %}
+
+{% block robots %}index,nofollow{% endblock %}
+{% block description %}{{ object.title }}{% endblock %}
+{% block keywords %}{{ object.tags }}{% endblock %}
+
+{% block content %}
+
+
+<!--
+	<ul id="navigation">
+		{% if object.get_previous_public_by_date %}
+			<li class="alignleft">
+			&laquo; <a href="{{ object.get_previous_public_by_date.get_absolute_url }}">{{ object.get_previous_public_by_date.title  }}</a>
+			</li>
+		{% endif %}
+		{% if object.get_next_public_by_date %}
+			<li class="alignright">
+			<a href="{{ object.get_next_public_by_date.get_absolute_url }}">{{ object.get_next_public_by_date.title  }}</a> &raquo; 
+			</li>
+		{% endif %}
+	</ul>
+-->
+
+	<div class="grid_2 alpha title">
+		<h2>{{ object.date|date:"d. F Y" }}</h2>
+	</div>
+
+	<div class="grid_6 omega content">
+		<h3>{{ object.title }}</h3>
+		{{ object.body_html|safe|iperlink }}
+	</div>
+
+	<div class="clear">&nbsp;</div>
+
+
+<!--
+	<div class="post" about="{{ object.get_absolute_url }}">
+	
+		<h2><a href="{{ object.get_absolute_url }}" property="dc:title">{{ object.title }}</a></h2>
+		<small property="dc:date" content="{{ object.date|date:"Y-m-d\TH:i:s\Z" }}">{{ object.date|date:"l, \d\e\n d. F Y" }}</small>
+	
+		<div class="entry">{{ object.body_html|safe|iperlink }}</div>
+
+	</div>
+		<p class="postmetadata"><small>
+		Der Beitrag wurde am {{ object.date|date:"d.m.Y" }} unter dem Titel
+		&#8220;{{ object.title  }}&#8221; veröffentlicht.
+		{% if object.enable_comments %}
+		Du kannst einen <a href="#respond">Kommentar</a> abgeben oder einen Pingback senden.
+		{% endif %}
+		</small> 
+
+		{% tags_for_object object as tags%}
+
+		{% if tags %}
+		<small>Schlagw&ouml;rter:
+		{% for tag in tags %}
+			<span><a rel="tag" href="/archive/{{ tag.name|slugify }}/">{{ tag.name }}</a></span>
+		{% endfor %}
+		</small>
+		{% endif %}
+
+		</p>
+-->
+
+	<!--
+	{# get_pingback_list for object as pingback_list #}
+	{# get_pingback_count for object as pingback_count #}
+
+	{% ifnotequal pingback_count 0 %}
+	<h3 id="pingbacks">Pingbacks zu &#8220;{{ object.title  }}&#8221;:</h3>
+	<ol class="commentlist">
+	{% for pingback in pingback_list %}
+		<li id="p{{ pingback.id }}" class="{% cycle 'noalt' 'alt' %}">
+		<small class="commentmetadata">{{ pingback.date|date:"d. F Y \u\m G:i" }}</small>
+		<cite><a href="{{ pingback.url }}">{{ pingback.title }}</a></cite>
+		</li>
+	{% endfor %}
+	</ol>
+	{% endifnotequal %}
+	-->
+
+
+	<div class="grid_2 alpha title">
+		<h2>Kommentare</h2>
+	</div>
+
+	<div class="grid_6 omega content">
+		<h3>Kommentare</h3>
+		...
+	</div>
+
+	<div class="clear">&nbsp;</div>
+
+
+	<!--
+	{% get_comment_list for object as comment_list %}
+	{% get_comment_count for object as comment_count %}
+
+	{% ifnotequal comment_count 0 %}
+	{% if object.enable_comments %}
+	<h3 id="comments">Kommentare zu &#8220;{{ object.title  }}&#8221;:</h3>
+	<ol class="commentlist">
+	{% for comment in comment_list %}
+		<li id="c{{ comment.id }}" class="{% cycle 'noalt' 'alt' %}">
+		<small class="commentmetadata">
+		{{ comment.submit_date|date:"d. F Y \u\m G:i" }}
+		</small>
+		<cite>
+		{% if comment.user_url %}
+			<a href="{{ comment.user_url }}">{{ comment.user_name }}</a>
+		{% else %}
+			{{ comment.user_name }}
+		{% endif %}
+		</cite> sagt:<br />
+		{{ comment.comment|markdown }}
+		</li>
+	{% endfor %}
+	</ol>
+	{% endif %}
+	{% endifnotequal %}
+
+	-->
+
+
+{% endblock %}
+
+
+{% block footbar %}
+{% if object.enable_comments %}
+
+	<!--
+
+	<div class="column">
+
+		<h3 id="respond">Kommentar abgeben</h3>
+
+		{% get_comment_form for object as form %} 
+		<form action="{% comment_form_target %}" method="post" id="commentform">
+		{# include "form.html" #} {{ form.as_p }}
+		<p>
+			<input name="preview" type="submit" id="submit" value="Vorschau" />
+		</p>
+		</form>
+
+	</div>
+
+	-->
+{% endif %}
+{% endblock %}

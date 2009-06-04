@@ -1,0 +1,25 @@
+{% load tagging_tags %}
+{% load pingback_tags %}
+{% load comments %}
+
+	{% tags_for_object object as tags%}
+	{% get_comment_count for object as comment_count %}
+	{# get_pingback_count for object as pingback_count #}
+
+	<div class="post" about="{{ object.get_absolute_url }}">
+
+	<h3><a property="dc:title" href="{{ object.get_absolute_url }}">{{ object.title }}</a></h3>
+	<small property="dc:date" content="{{ object.date|date:"Y-m-d\TH:i:s\Z" }}">{{ object.date|date:"l, \d\e\n d. F Y" }}</small>
+	<div class="entry">
+		<p>{{ object.excerpt }}..<span class="alignright"><a href="{{ object.get_absolute_url }}">...weiter lesen</a></span></p>
+<!--		<div class="clear">
+			<div class="alignleft"><small>Schlagw&ouml;rter:
+			{% for tag in tags %}
+			<a rel="tag" href="/archive/{{ tag.name|slugify }}/">{{ tag.name }}</a>
+			{% endfor %}
+
+			</small></div>
+		</div>
+-->
+	</div>
+	</div>

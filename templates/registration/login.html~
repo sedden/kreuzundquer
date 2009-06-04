@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block titlehead %}&bull; Anmelden{% endblock %}
+
+{% block content %}
+
+{% if form.errors %}
+
+	<div class="grid_2 alpha title">
+		<h2>Anmeldung fehlgeschlagen</h2>
+	</div>
+
+	<div class="grid_6 omega content">
+		<p>Benutzername und Passwort passen nicht, bitte erneut versuchen!</p>
+	</div>
+
+{% else %}
+
+	<div class="grid_2 alpha title">
+		<h2>{{ title }}</h2>
+	</div>
+
+	<div class="grid_6 omega content">
+
+		<h3>Anmelden</h3><p>Registrierte Nutzer können sich hier anmelden</p>
+
+		<form method="post" action="{% url django.contrib.auth.views.login %}">
+		{# include "form.html" #} {{ form.as_p }}
+		<input type="submit" value="Anmelden" />
+		<input type="hidden" name="next" value="{{ next }}" />
+		</form>
+
+	</div>
+
+{% endif %}
+
+{% endblock %}
