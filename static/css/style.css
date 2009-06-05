@@ -33,7 +33,7 @@ h3 a,
 h4 a { text-decoration: none; color: #000; }
 
 .title { background: #fff url('/static/img/tile_140_70.png') no-repeat right top; height: 140px; padding-bottom: 70px; }
-.title h2 { font-size: 20px; margin: 5px 10px; text-align: right; color: #fff; }
+.title h2 { margin: 5px 10px; color: #fff; font-size: 18px; font-weight: normal; text-align: right; }
 
 .content { word-spacing: 0.2em; line-height: 1.5em; font-size: 12px; text-align: left; }
 .content p { margin: 0px 0px 12px; }

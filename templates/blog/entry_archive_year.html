@@ -1,10 +1,9 @@
 {% extends "base.html" %}
 
-{% block titlehead %} &bull; Archiv &bull; {{ year }} {% endblock %}
+{% block title %}&bull; Blog &bull; {{ year }}{% endblock %}
 
 {% block robots %}noindex,follow{% endblock %}
 {% block description %}Jahresarchiv für {{ year }}{% endblock %}
-
 
 {% block content %}
 
@@ -20,7 +19,6 @@
 
 		{% if not forloop.first %}</ul></div>{% endif %}
 
-		<div class="halfcolumn {% cycle '' 'clear' %} ">
 		<h3>{{ object.date|date:"F Y" }}</h3>
 		<ul>
 		{% endifchanged %}
@@ -28,7 +26,7 @@
 				<a href="{{ object.get_absolute_url }}">{{ object.title }}</a>
 			</li>
 		{% endfor %}
-		</ul></div>
+		</ul>
 
 		<div class="clear"></div>
 

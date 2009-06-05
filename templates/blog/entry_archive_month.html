@@ -1,5 +1,5 @@
 {% extends "blog/entry_archive.html" %}
 
-{% block title %} Stefan Jenkner &raquo; Archiv &raquo; {{ month|date:"F Y" }} {% endblock %}
+{% block title %}&bull; Blog &bull; {{ month|date:"F Y" }} {% endblock %}
 {% block description %}Monatsarchiv für {{ month|date:"F Y" }}{% endblock %}
-{% block pagetitle %}Monatsarchiv f&uuml;r {{ month|date:"F Y" }}{% endblock %}
+{% block pagetitle %}{{ month|date:"F\<\b\r \/\>Y"|safe }}{% endblock %}

@@ -8,7 +8,7 @@ archive_common = {
 }
 
 urlpatterns = patterns('django.views.generic.date_based',
-	(r'^/$', 'archive_index',
+	(r'^$', 'archive_index',
 		dict(archive_common, num_latest=15),
 	),
 	(r'^(?P<year>\d{4})/$', 'archive_year',

@@ -9,9 +9,12 @@
 	<div class="post" about="{{ object.get_absolute_url }}">
 
 	<h3><a property="dc:title" href="{{ object.get_absolute_url }}">{{ object.title }}</a></h3>
-	<small property="dc:date" content="{{ object.date|date:"Y-m-d\TH:i:s\Z" }}">{{ object.date|date:"l, \d\e\n d. F Y" }}</small>
-	<div class="entry">
-		<p>{{ object.excerpt }}..<span class="alignright"><a href="{{ object.get_absolute_url }}">...weiter lesen</a></span></p>
+	
+	<!-- <small property="dc:date" content="{{ object.date|date:"Y-m-d\TH:i:s\Z" }}">{{ object.date|date:"l, \d\e\n d. F Y" }}</small> -->
+
+	<div class="entry">{{ object.author.email }}
+		<p>{{ object.excerpt }}..
+		<span class="alignright"><a href="{{ object.get_absolute_url }}">...weiter lesen</a></span></p>
 <!--		<div class="clear">
 			<div class="alignleft"><small>Schlagw&ouml;rter:
 			{% for tag in tags %}

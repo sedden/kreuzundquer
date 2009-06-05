@@ -1,19 +1,25 @@
 {% extends "base.html" %}
 
-{% block title %}Stefan Jenkner &raquo; Archiv{% endblock %}
-{% block description %}Beiträge im Archiv{% endblock %}
+{% block title %}&bull; Blog{% endblock %}
+{% block description %}Die letzten Einträge im Blog{% endblock %}
 {% block robots %}noindex,follow{% endblock %}
 
 {% block content %}
 
-<h2>{% block pagetitle %}Die letzten Beitr&auml;ge im Archiv{% endblock %}</h2>
+	<div class="grid_2 alpha title">
+		<h2>{% block pagetitle %}Blog{% endblock %}</h2>
+	</div>
 
-{% for object in object_list %}
-	{% include "blog/entry_preview.html" %}
-{% endfor %}
+	<div class="grid_6 omega content">
 
-{% for object in latest %}
-	{% include "blog/entry_preview.html" %}
-{% endfor %}
+	{% for object in object_list %}
+		{% include "blog/entry_preview.html" %}
+	{% endfor %}
+
+	{% for object in latest %}
+		{% include "blog/entry_preview.html" %}
+	{% endfor %}
+
+	</div>
 
 {% endblock %}
