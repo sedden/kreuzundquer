@@ -6,10 +6,10 @@ from blog.models import Entry
 
 class LatestEntries(Feed):
 
-	title = "Stefan Jenkner (Artikel)"
-	author_name = "Stefan Jenkner"
+	title = "kreuzundquer Blog"
+	author_name = "kreuzundquer"
 	author_email = "stefan@jenkner.org"
-	description = "Neues im Blog von Stefan Jenkner"
+	description = "Neues im kreuzundquer Blog"
 	description_template = 'feeds/description.html'
 	link = '/'
 
@@ -21,10 +21,11 @@ class LatestEntries(Feed):
 
 class LatestComments(LatestCommentFeed):
 
-	title = "Stefan Jenkner (Kommentare)" 
+	title = "kreuzundquer Kommentare" 
 	author_name = LatestEntries.author_name
 	author_email = LatestEntries.author_email
-	description = "Kommentare im Blog von Stefan Jenkner"
+	description = "Kommentare im kreuzundquer Blog"
+	description_template = 'feeds/description_markdown.html'
 	link = LatestEntries.link
 
 class Rss2Feed(Rss201rev2Feed):

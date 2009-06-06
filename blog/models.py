@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+#from django.contrib.comments.moderation import CommentModerator, moderator
 
 from datetime import time, date, datetime
 from time import strptime
@@ -10,10 +11,6 @@ from tagging.models import Tag
 from tagging.fields import TagField
 
 from blog.fields import MarkdownTextField
-
-#from xmlrpc import dispatcher
-#from pingback.client import ping_external_links, ping_directories
-#from pingback import create_ping_func
 
 class Entry(models.Model):
 	
@@ -47,22 +44,7 @@ class Entry(models.Model):
 	def __unicode__(self):
 		return u'%s' % self.title
 
-
-# Pingback server
-#dispatcher.register_function(create_ping_func, 'pingback.ping')
-
-# Pingback clients
-#ping_dirs = ping_directories(
-#	content_attr='body_html',
-#	url_attr='get_absolute_url',
-#	filtr=lambda x: x.is_public,
-#	feed_url_fun=lambda x: reverse('django.contrib.syndication.views.feed', args=['atom'])
-#)
-#models.signals.post_save.connect(ping_dirs, sender=Entry)
-
-#ping_links = ping_external_links(
-#	content_attr='body_html',
-#	url_attr='get_absolute_url',
-#	filtr=lambda x: x.is_public
-#)
-#models.signals.post_save.connect(ping_links, sender=Entry)
+#class EntryModerator(CommentModerator):
+#	email_notification = True
+#	enable_field = 'enable_comments'
+#moderator.register(Entry, EntryModerator)

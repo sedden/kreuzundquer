@@ -102,7 +102,7 @@ MARKITUP_SET = 'markitup/sets/markdown'
 MARKITUP_SKIN = 'markitup/skins/simple'
 MARKITUP_PREVIEW_FILTER = ('markdown.markdown', {'safe_mode': True})
 
-FILEBROWSER_URL_WWW = MEDIA_URL + "uploads/"
+GRAVATAR_DEFAULT_IMAGE = "http://localhost:8000" + MEDIA_URL + "img/gravatar.png"
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -113,14 +113,16 @@ INSTALLED_APPS = (
     'django.contrib.flatpages',
     'django.contrib.markup',
     'django.contrib.sitemaps',
+    'django.contrib.syndication',
     'django.contrib.comments',
     'reversion',
     'blog',
-    #'dbtemplates',
     'flatpages',
+    'contact_form',
     'markitup',
-    #'wiki',
     'tagging',
+    'gravatar',
+    #'dbtemplates',
+    #'wiki',
     #'messages',
-    #'contact_form',
 )

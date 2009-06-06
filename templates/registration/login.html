@@ -1,39 +1,33 @@
 {% extends "base.html" %}
 
 {% block title %}&bull; Anmelden{% endblock %}
+{% block description %}&bull; Anmeldung für registrierte Nutzer{% endblock %}
 
-{% block content %}
+{% block pagetitle %}Hallo!{% endblock %}
+{% block pagecontent %}
 
-{% if form.errors %}
+	{% if form.errors %}
 
-	<div class="grid_2 alpha title">
-		<h2>System</h2>
-	</div>
-
-	<div class="grid_6 omega content">
 		<h3>Anmeldung fehlgeschlagen</h3>
 		<p>Benutzername und Passwort passen nicht, bitte erneut versuchen!</p>
-	</div>
 
-{% else %}
-
-	<div class="grid_2 alpha title">
-		<h2>System</h2>
-	</div>
-
-	<div class="grid_6 omega content">
+	{% else %}
 
 		<h3>Anmelden</h3>
-		<p>Registrierte Nutzer können sich hier anmelden</p>
 
-		<form method="post" action="{% url django.contrib.auth.views.login %}">
-		{# include "form.html" #} {{ form.as_p }}
+		{% if next %}
+		<p>Dieser Bereiche der Webseite ist nur für registrierte Nutzer zugänglich.</p>
+		{% endif %}
+
+		<p>Zum Anmelden bitte Benutzername und Passwort eingeben.</p>
+
+		<form method="post" action="{% url django.contrib.auth.views.login %}" class="uniForm">
+		{% include "form.html" %}
 		<input type="submit" value="Anmelden" />
 		<input type="hidden" name="next" value="{{ next }}" />
 		</form>
-
-	</div>
-
-{% endif %}
+	{% endif %}
 
 {% endblock %}
+
+{% block footer %}{% endblock %}

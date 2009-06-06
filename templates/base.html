@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
-{% load cache i18n %}
+{% load cache i18n objectlist %}
 <html version="XHTML+RDFa 1.0" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:foaf="http://xmlns.com/foaf/0.1/"
@@ -27,7 +27,20 @@
 	<meta name="keywords" content="{% block keywords %}{% endblock %} kreuzundquer e.V." />
 	<meta name="description" content="{% block description %}{% endblock %}" />
 
+	<link rel="alternate" type="application/atom+xml" title="kreuzundquer Blog" href="/feeds/atom/" />
+	<link rel="alternate" type="application/atom+xml" title="kreuzundquer Kommentare" href="/feeds/comments-atom/" />
+
+	{% cache 18600 archive %}
+	{% get_object_list blog entry as entries %}{% spaceless %}
+	{% for entry in entries %}
+	{% ifchanged entry.date.month %}
+	<link rel="archives" title='{{ entry.date|date:"F Y" }}' href='/blog/{{ entry.date|date:"Y/m" }}/' />
+	{% endifchanged %}
+	{% endfor %}{% endspaceless %}
+	{% endcache %}	
+
 	<link href="{{ MEDIA_URL }}css/grid.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="{{ MEDIA_URL }}css/uni-form.css" media="screen" rel="stylesheet" type="text/css" />
 	<link href="{{ MEDIA_URL }}css/style.css" media="screen" rel="stylesheet" type="text/css" />
 
 	<link href="{{ MEDIA_URL }}img/favicon.ico" rel="shortcut icon" />
@@ -41,26 +54,30 @@
 
 <div class="container container_12">
 
-
 	<div id="header" class="grid_10 prefix_1 suffix_1">
+
 		<div class="grid_4 prefix_1 alpha">
-			<a href="/vision/"><img src="{{ MEDIA_URL }}img/button_vision_hi.png" alt="Vision" /></a>
-			<a href="/team/"><img src="{{ MEDIA_URL }}img/button_team.png" alt="Team" /></a>
-			<a href="/projekte/"><img src="{{ MEDIA_URL }}img/button_projekte.png" alt="Projekte" /></a>
-			<a href="/blog/"><img src="{{ MEDIA_URL }}img/button_blog.png" alt="Blog" /></a>
+			<a href="/vision/"><img src="{{ MEDIA_URL }}img/button_vision{% ifequal request.path '/vision/' %}_hi{% endifequal %}.png" alt="Vision" /></a>
+			<a href="/team/"><img src="{{ MEDIA_URL }}img/button_team{% ifequal request.path '/team/' %}_hi{% endifequal %}.png" alt="Team" /></a>
+			<a href="/projekte/"><img src="{{ MEDIA_URL }}img/button_projekte{% ifequal request.path '/projekte/' %}_hi{% endifequal %}.png" alt="Projekte" /></a>
+			<a href="/blog/"><img src="{{ MEDIA_URL }}img/button_blog{% ifequal request.path '/blog/' %}_hi{% endifequal %}.png" alt="Blog" /></a>
 		</div>
+
 		<div class="grid_3 prefix_1 suffix_1 omega right">
-			<a href="/kontakt/"><img src="{{ MEDIA_URL }}img/button_kontakt.png" alt="Kontakt" /></a>
-			<a href="/helfen/"><img src="{{ MEDIA_URL }}img/button_helfen.png" alt="Helfen" /></a>
+			<a href="/kontakt/"><img src="{{ MEDIA_URL }}img/button_kontakt{% ifequal request.path '/kontakt/' %}_hi{% endifequal %}.png" alt="Kontakt" /></a>
+			<a href="/helfen/"><img src="{{ MEDIA_URL }}img/button_helfen{% ifequal request.path '/helfen/' %}_hi{% endifequal %}.png" alt="Helfen" /></a>
 		</div>
+
+		<div class="grid_3 prefix_1 suffix_1 omega right">
+		</div>
+
 	</div>
 
 	<div id="logo" class="grid_6 prefix_2">
 		<h1><a href="/"><img src="{{ MEDIA_URL }}img/logo.png" alt="kreuzundquer e.V." /></a></h1>
 	</div>
 
-
-	<div class="grid_2 suffix_2 right">
+	<div id="admin" class="grid_2 suffix_2 right">
 		{% if user.is_authenticated %}
 			<a href="/admin/">{% trans "admin" %}</a>
 			<a href="/logout/">{% trans "logout" %}</a>
@@ -69,21 +86,30 @@
 		{% endif %}
 	</div>
 
+	<div class="clear">&nbsp;</div>
 
-	<div id="main" class="grid_8 prefix_2 suffix_2">
+	<div id="catcher" class="grid_8 prefix_2 suffix_2">
 	{% block catcher %}&nbsp;{% endblock %}
 	</div>
 
-	<div id="main" class="grid_8 prefix_2 suffix_2">
-	{% block content %}&nbsp;{% endblock %}
+	<div class="clear">&nbsp;</div>
+
+	<div id="content" class="grid_8 prefix_2 suffix_2">
+	{% block content %}
+	<div class="grid_2 alpha title"><h2>{% block pagetitle %}Titel{% endblock %}</h2></div>
+	<div class="grid_6 omega content">{% block pagecontent %}Inhalt{% endblock %}</div>
+	{% endblock %}
 	</div>
 
+	<div class="clear">&nbsp;</div>
 
+	{% block footer %}
 	<div id="footer" class="grid_10 prefix_1 suffix_1">
 		<div class="grid_2 prefix_7 suffix_1 alpha omega right">
 			<a href="/impressum/"><img src="{{ MEDIA_URL }}img/button_impressum.png" alt="Impressum" /></a>
 		</div>
 	</div>
+	{% endblock %}
 
 	<div class="clear">&nbsp;</div>
 

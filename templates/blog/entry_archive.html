@@ -4,22 +4,11 @@
 {% block description %}Die letzten Einträge im Blog{% endblock %}
 {% block robots %}noindex,follow{% endblock %}
 
-{% block content %}
-
-	<div class="grid_2 alpha title">
-		<h2>{% block pagetitle %}Blog{% endblock %}</h2>
-	</div>
-
-	<div class="grid_6 omega content">
+{% block pagetitle %}Blog{% endblock %}
+{% block pagecontent %}
 
 	{% for object in object_list %}
 		{% include "blog/entry_preview.html" %}
 	{% endfor %}
-
-	{% for object in latest %}
-		{% include "blog/entry_preview.html" %}
-	{% endfor %}
-
-	</div>
 
 {% endblock %}

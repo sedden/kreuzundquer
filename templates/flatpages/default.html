@@ -3,6 +3,8 @@
 {% load markup %}
 
 {% block title %}&bull; {{ flatpage.title }}{% endblock %}
+{% block description %}{{ flatpage.title }}{% endblock %}
+{% block robots %}index,follow{% endblock %}
 
 {% block content %}
 
@@ -13,6 +15,14 @@
 	<div class="grid_6 omega content">
 		{{ flatpage.content|markdown }}
 	</div>
+
+	<div class="clear">&nbsp;</div>
+
+	{% if flatpage.enable_comments %}
+	{% with flatpage as object %}
+	{% include "comments/comments.html" %}
+	{% endwith %}
+	{% endif %}
 
 	<div class="clear">&nbsp;</div>
 

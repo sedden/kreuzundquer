@@ -2,6 +2,8 @@
 
 {% load markup objectlist %}
 
+{% block description %}kreuzundquer e.V. Start{% endblock %}
+{% block robots %}index,follow{% endblock %}
 
 {% block catcher %}
 	<img src="{{ MEDIA_URL }}img/start.png" alt="kreuzundqeuer e.V."/>
@@ -17,7 +19,6 @@
 		{{ flatpage.content|markdown }}
 	</div>
 
-
 	{% get_object_list blog entry as entries %}
 
 	<div class="grid_2 alpha title">
@@ -25,7 +26,6 @@
 	</div>
 
 	<div class="grid_6 omega content">
-
 		{% for object in entries|slice:":3" %}
 			{% include "blog/entry_preview.html" %}
 		{% endfor %}

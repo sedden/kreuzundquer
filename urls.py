@@ -11,7 +11,11 @@ urlpatterns = patterns('',
     (r'^admin/(.*)', admin.site.root),
 )
 
-# Debug? Serve static files.
+# Sitemaps, Feeds
+sitemaps = { 'flatpages': FlatPageSitemap }
+feeds = {}
+
+# Debug? Serve static files!
 if settings.DEBUG:
     urlpatterns += patterns('',
         (r'^static/(?P<path>.*)$', 'django.views.static.serve',
@@ -32,7 +36,7 @@ if 'markitup' in settings.INSTALLED_APPS:
 # Contact
 if 'contact_form' in settings.INSTALLED_APPS:
     urlpatterns += patterns('',
-        (r'^contact/', include('contact_form.urls')),
+        (r'^kontakt/', include('contact_form.urls')),
     )
 
 # Blog
@@ -40,16 +44,13 @@ if 'blog' in settings.INSTALLED_APPS:
     urlpatterns += patterns('',
         (r'^blog/', include('blog.urls')),
     )
-
-# Sitemaps
-sitemaps = { 
-	'flatpages': FlatPageSitemap, 
-#	'blog': GenericSitemap(archive_common, priority=0.8),
-}
-if 'django.contrib.sitemaps' in settings.INSTALLED_APPS:
-	urlpatterns += patterns('',
-		(r'^sitemap.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
-)
+    from blog.urls import archive_common
+    from blog.feeds import LatestEntriesRss, LatestEntriesAtom, LatestCommentsRss, LatestCommentsAtom
+    sitemaps['blog'] = GenericSitemap(archive_common, priority=0.8)
+    feeds['atom'] = LatestEntriesAtom
+    feeds['rss'] = LatestEntriesRss
+    feeds['comments-atom'] = LatestCommentsAtom
+    feeds['comments-rss'] = LatestCommentsRss
 
 # Registration
 if 'django.contrib.auth' in settings.INSTALLED_APPS:
@@ -64,3 +65,14 @@ if 'django.contrib.comments' in settings.INSTALLED_APPS:
 		(r'^comments/', include('django.contrib.comments.urls')),
 	)
 
+# Sitemaps
+if 'django.contrib.sitemaps' in settings.INSTALLED_APPS:
+	urlpatterns += patterns('',
+		(r'^sitemap.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
+	)
+
+# Feeds
+if 'django.contrib.syndication' in settings.INSTALLED_APPS:
+	urlpatterns += patterns('',
+		(r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed', {'feed_dict': feeds}),
+	)

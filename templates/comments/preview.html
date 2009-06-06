@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% load comments %}
+{% load markup %}
+
+{% block title %}&bull; Kommentar{% endblock %}
+{% block description %}Vorschau des Kommentars{% endblock %}
+
+{% block content %}
+
+	<div class="grid_2 alpha title">
+		<h2>Vorschau</h2>
+	</div>
+
+	<div class="grid_6 omega content">
+
+	{% if form.errors %}
+		<h3>Bitte Fehler korrigieren</h3>
+		<p>Es ist noch keine Vorschau möglich.</p>
+	{% else %}
+
+		<h3>Vorschau des Kommentars</h3>
+		<ol class="commentlist">
+			<li><small class="meta">
+			<a href="#">{% now "d. F Y \u\m G:i" %}</a>
+			</small>
+			<cite>{{ form.cleaned_data.name }}</cite> sagt:<br />
+			{{ comment|markdown|urlize }}
+			</li>
+		</ol>
+
+		<form action="{% comment_form_target %}" method="POST" id="commentform">
+		{% for field in form %}{{ field.as_hidden }}{% endfor %}
+		<p>
+			<input class="alignright" type="submit" name="submit" value="Absenden" />
+		</p>
+		</form>
+
+	{% endif %}
+
+	</div>
+
+	<div class="clear">&nbsp;</div>
+
+	<div class="grid_2 alpha title">
+		<h2>Ändern</h2>
+	</div>
+
+	<div class="grid_6 omega content">
+
+		<h3>Kommentar ändern</h3>
+
+		<form action="{% comment_form_target %}" method="POST" id="commentform" class="uniForm">
+		{% include "form.html" %}
+		<p>
+			<input type="submit" name="preview" value="Vorschau" />
+		</p>
+		</form>
+	</div>
+
+{% endblock %}

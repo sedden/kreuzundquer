@@ -1,9 +1,18 @@
 {% extends "base.html" %}
 
-{% block title %}
-Kontakt
-{% endblock %}
+{% block title %}Kontakt{% endblock %}
+{% block description %}Kontakt aufnehmen{% endblock %}
 
-{% block content %}
-{{ form.as_p }}
+{% block pagetitle %}Kontakt{% endblock %}
+{% block pagecontent %}
+
+	<h3>Fragen, Anregungen, Kritiken, Geldüberweisungen?</h3>
+
+	<p>Was auch immer! Hier kannst du mit uns in Kontakt treten.</p>
+
+	<form method="post" action="{% url contact_form %}" class="uniForm">
+	{% include "form.html" %}
+	<input type="submit" value="Absenden" />
+	</form>
+
 {% endblock %}

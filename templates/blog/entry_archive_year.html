@@ -1,35 +1,21 @@
-{% extends "base.html" %}
+{% extends "blog/entry_archive.html" %}
 
 {% block title %}&bull; Blog &bull; {{ year }}{% endblock %}
-
-{% block robots %}noindex,follow{% endblock %}
 {% block description %}Jahresarchiv für {{ year }}{% endblock %}
 
-{% block content %}
+{% block pagetitle %}{{ year }}{% endblock %}
+{% block pagecontent %}
 
-	<div class="grid_2 alpha title">
-		<h2>{{ year }}</h2>
-	</div>
+	{% for object in object_list %}
 
-	<div class="grid_6 omega content">
+	{% ifchanged object.date.month %} 
+	{% if not forloop.first %}</ul></div>{% endif %}
+	<h3>{{ object.date|date:"F Y" }}</h3><ul>
+	{% endifchanged %}
 
-		{% for object in object_list %}
+	<li><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></li>
 
-		{% ifchanged object.date.month %} 
-
-		{% if not forloop.first %}</ul></div>{% endif %}
-
-		<h3>{{ object.date|date:"F Y" }}</h3>
-		<ul>
-		{% endifchanged %}
-			<li>
-				<a href="{{ object.get_absolute_url }}">{{ object.title }}</a>
-			</li>
-		{% endfor %}
-		</ul>
-
-		<div class="clear"></div>
-
-	</div>
+	{% endfor %}
+	</ul>
 
 {% endblock %}

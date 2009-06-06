@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Kommentar{% endblock %}
+
+{% block pagetitle %}Kommentar{% endblock %}
+{% block pagecontent %}
+
+	<h3>Danke f&uuml;r den Kommentar!</h3>
+
+	<p>Du kannst deinen Kommentar <a href="{{ comment.get_absolute_url }}">hier</a> betrachten.</p>
+	<ul id="navigation">
+		<li class="alignleft">
+			&laquo; <a href="{{ comment.get_absolute_url }}">Zurück zum Beitrag</a>
+		</li>
+	</ul>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
