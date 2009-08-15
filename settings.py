@@ -5,7 +5,7 @@ from os import path
 PRJ_DIR = path.abspath(path.dirname(__file__))
 PRJ_NAME = path.basename(PRJ_DIR)
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 FORCE_SCRIPT_NAME=""
 
@@ -15,8 +15,8 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = 'sqlite3'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
-DATABASE_NAME = path.join(PRJ_DIR,'%s.db' % PRJ_NAME)      # Or path to database file if using sqlite3.
+DATABASE_ENGINE = 'postgresql_psycopg2'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
+DATABASE_NAME = PRJ_NAME       # Or path to database file if using sqlite3.
 DATABASE_USER = ''             # Not used with sqlite3.
 DATABASE_PASSWORD = ''         # Not used with sqlite3.
 DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
@@ -71,7 +71,7 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
     'django.template.loaders.app_directories.load_template_source',
     'django.template.loaders.eggs.load_template_source',
-    'dbtemplates.loader.load_template_source',
+#    'dbtemplates.loader.load_template_source',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -102,7 +102,8 @@ MARKITUP_SET = 'markitup/sets/markdown'
 MARKITUP_SKIN = 'markitup/skins/simple'
 MARKITUP_PREVIEW_FILTER = ('markdown.markdown', {'safe_mode': True})
 
-GRAVATAR_DEFAULT_IMAGE = "http://localhost:8000" + MEDIA_URL + "img/gravatar.png"
+#GRAVATAR_DEFAULT_IMAGE = "http://localhost:8000" + MEDIA_URL + "img/gravatar.png"
+GRAVATAR_DEFAULT_IMAGE = MEDIA_URL + "img/gravatar.png"
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -123,6 +124,4 @@ INSTALLED_APPS = (
     'tagging',
     'gravatar',
     #'dbtemplates',
-    #'wiki',
-    #'messages',
 )
