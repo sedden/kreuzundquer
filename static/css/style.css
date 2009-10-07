@@ -79,3 +79,6 @@ ul#navigation li { display: block; padding: .2em 0; text-align: center; text-dec
 
 div.content,
 div.title { margin-top: 40px; }
+
+#admin { text-align: right; }
+#admin ul li { display: inline; list-style-type: none; padding-left: 20px; }

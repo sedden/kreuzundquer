@@ -25,13 +25,13 @@
 
 
 	<div class="grid_2 alpha title">
-		<h2>{{ object.date|date:"d. F Y" }}</h2>
+		<h2>{{ object.date|date:"d. F" }}</h2>
 	</div>
 
 	<div class="grid_6 omega content">
 
 		<div class="post" about="{{ object.get_absolute_url }}">
-		<span style="float:right;">{% gravatar_img_for_email object.author.email 60 %}</span>
+		<!-- <span style="float:right;">{% gravatar_img_for_email object.author.email 60 %}</span> -->
 
 		<h3><a property="dc:title" href="{{ object.get_absolute_url }}">{{ object.title }}</a></h3>
 		<p>
@@ -66,8 +66,12 @@
 		{% if object.enable_comments %}
 		Du kannst einen <a href="#respond">Kommentar</a> abgeben.
 		{% endif %}
-		</small></p>
 
+		{% if user.is_authenticated %}
+		Beitrag <a href="/admin/blog/entry/{{ object.id }}/">bearbeiten</a>.
+		{% endif %}
+
+		</small></p>
 	</div>
 
 	<div class="clear">&nbsp;</div>

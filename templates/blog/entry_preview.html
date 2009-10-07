@@ -8,20 +8,14 @@
 	{# get_pingback_count for object as pingback_count #}
 
 	<div class="post" about="{{ object.get_absolute_url }}">
-	<p style="float:right;">{% gravatar_img_for_email object.author.email 60 %}</p>
 
-	<h3><a property="dc:title" href="{{ object.get_absolute_url }}">{{ object.title }}</a></h3>
+	<h3><a property="dc:title" href="{{ object.get_absolute_url }}" title="{{ object.excerpt }}" >{{ object.title }}</a></h3>
 	<p>
-		<small property="dc:date" content="{{ object.date|date:"Y-m-d\TH:i:s\Z" }}">{{ object.date|date:"l, \d\e\n d. F Y" }}</small><br />
-	  	<small property="dc:creator" content="{{ object.author.first_name }} {{ object.author.last_name }}">
-			Autor: {{ object.author.first_name }} {{ object.author.last_name }}
-		</small>
+	  	<span property="dc:creator" content="{{ object.author.first_name }} {{ object.author.last_name }}">
+		Von {{ object.author.first_name }} {{ object.author.last_name }}</span>
+		<span property="dc:date" content="{{ object.date|date:"Y-m-d\TH:i:s\Z" }}">am {{ object.date|date:"l, \d\e\n d. F Y" }}</span> 
+		<!-- <span><a href="{{ object.get_absolute_url }}">...lesen!</a></span> -->
 	</p>
-
-	<div class="clear">&nbsp;</div>
-
-	<p class="justify">{{ object.excerpt }} <a href="{{ object.get_absolute_url }}">...weiter lesen</a></p>
-
 	<!--
 		<div class="alignleft"><small>Schlagw&ouml;rter:
 		{% for tag in tags %}
