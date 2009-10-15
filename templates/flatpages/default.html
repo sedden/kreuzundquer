@@ -9,19 +9,15 @@
 {% block content %}
 
 	<div class="grid_2 alpha title">
-		<h2>{{ flatpage.title }}</h2>
+	{% if user.is_authenticated %}
+		<a href="/admin/flatpages/flatpage/{{ flatpage.id }}/" title="Seite bearbeiten"><img
+		 src="{{ MEDIA_URL }}img/gtk-edit.png" alt="Seite bearbeiten" /></a>
+	{% endif %}
+	<h2>{{ flatpage.title }}</h2>
 	</div>
 
 	<div class="grid_6 omega content">
 		{{ flatpage.content|markdown }}
-
-	
-{% if user.is_authenticated %}
-	<p class="meta"><small>
-	<a href="/admin/flatpages/flatpage/{{ flatpage.id }}/">Seite bearbeiten</a>
-	</small></p>
-{% endif %}
-
 	</div>
 
 	<div class="clear">&nbsp;</div>

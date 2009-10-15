@@ -38,10 +38,10 @@ h4 a, h4 a:hover, h4 a:visited { color: #000; }
 a:hover,
 h2 a:hover { text-decoration: underline; }
 
-blockquote { padding: 0; font-style: italic; quotes: "\201C" "\201D"; margin: 0 0 0 30px; display:block; width: 45%; text-align: justify; float: right; color: #444; }
+blockquote { padding: 0; font-style: italic; quotes: "\201C" "\201D"; margin: 0 0 0 30px; display:block; width: 40%; text-align: justify; float: right; color: #444; font-size: 0.7em; }
 
 blockquote:before,
-blockquote:after { font-weight: bold; color: #f60; font-size: 18px; }
+blockquote:after { font-weight: bold; color: #f60; font-size: 14px; }
 
 blockquote:before { content: open-quote; }
 blockquote:after { content: close-quote; }
@@ -57,15 +57,16 @@ ul#navigation li { display: block; padding: .2em 0; text-align: center; text-dec
 
 .title { background: #fff url('/static/img/tile_140_70.png') no-repeat right top; height: 140px; padding-bottom: 70px; }
 .title h2 { margin: 5px 10px; color: #fff; font-size: 18px; font-weight: normal; text-align: right; }
+.title img { margin: 5px 5px; padding: 2px 0px; float:left; }
 
 .content { word-spacing: 0.2em; line-height: 1.5em; font-size: 12px; text-align: left; }
 .content p { margin: 0px 0px 14px; text-align: justify; }
 .content p a { color: #f60; }
-.content h3 { margin: 8px 0 12px; font-size: 16px; }
+.content h3 { margin: 8px 0 16px; font-size: 16px; }
 .content h4 { margin: 14px 0 8px; font-size: 14px; }
 .content textarea { width: 100%; }
 
-.content img { border: 1px solid #f60; padding: 1px; }
+.content img { border: 1px solid #f60; padding: 1px; float:right; margin: 0px 0px 0px 15px; }
 
 .meta { color: #999; } 
 .meta small a { color: #f60; }
