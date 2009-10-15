@@ -7,8 +7,8 @@ from reversion.admin import VersionAdmin
 #from flatpages.widgets import WYMEditor, markitUpEditor
 from markitup.widgets import MarkItUpWidget
 
-#class CustomFlatPageAdmin(VersionAdmin, FlatPageAdmin):
-class CustomFlatPageAdmin(FlatPageAdmin):
+class CustomFlatPageAdmin(VersionAdmin, FlatPageAdmin):
+#class CustomFlatPageAdmin(FlatPageAdmin):
     def formfield_for_dbfield(self, db_field, **kwargs):
         if db_field.name == 'content':
             return db_field.formfield(widget=MarkItUpWidget())
