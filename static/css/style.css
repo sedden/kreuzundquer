@@ -96,7 +96,7 @@ ul#menulist2 { margin: 0; padding-left: 0; white-space: nowrap; }
 #menulist2 li { display: inline; list-style-type: none; line-height: 60px; }
 
 #menulist1 a,
-#menulist2 a { padding: 20px 10px; font-size: 15px; }
+#menulist2 a { padding: 22px 10px; font-size: 16px; }
 
 #menulist1 a:link,
 #menulist2 a:link,

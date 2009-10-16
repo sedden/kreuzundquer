@@ -5,6 +5,7 @@
 {% block title %}&bull; {{ object.title }}{% endblock %}
 {% block robots %}index,nofollow{% endblock %}
 {% block description %}{{ object.title }}{% endblock %}
+{% block author %}{{ object.author.first_name }} {{ object.author.last_name }}{% endblock %}
 {% block keywords %}{{ object.tags }}{% endblock %}
 
 {% block content %}
