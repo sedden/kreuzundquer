@@ -13,7 +13,14 @@
 	<p>
 	  	<span property="dc:creator" content="{{ object.author.first_name }} {{ object.author.last_name }}">
 		Von {{ object.author.first_name }} {{ object.author.last_name }}</span>
-		<span property="dc:date" content="{{ object.date|date:"Y-m-d\TH:i:s\Z" }}">am {{ object.date|date:"l, \d\e\n d. F Y" }}</span> 
+		<span property="dc:date" content="{{ object.date|date:"Y-m-d\TH:i:s\Z" }}">am {{ object.date|date:"l, \d\e\n d. F Y" }}</span>
+
+		{% if comment_count %}
+		<br />
+		<span><a href="{{ object.get_absolute_url }}#comments"
+		>{{ comment_count }} Kommentar{{ comment_count|pluralize:"e" }}</a>
+		</span>
+		{% endif %}
 		<!-- <span><a href="{{ object.get_absolute_url }}">...lesen!</a></span> -->
 	</p>
 	<!--
