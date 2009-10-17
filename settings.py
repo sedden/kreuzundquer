@@ -9,6 +9,9 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 FORCE_SCRIPT_NAME=""
 
+APPEND_SLASH = False
+PREPEND_WWW = True
+
 DEFAULT_FROM_EMAIL = "webmaster@kreuzundquer-ev.de"
 
 # Empfaenger fuer Fehlermeldungen
@@ -111,8 +114,9 @@ MARKITUP_SET = 'markitup/sets/markdown'
 MARKITUP_SKIN = 'markitup/skins/simple'
 MARKITUP_PREVIEW_FILTER = ('markdown.markdown', {'safe_mode': True})
 
-#GRAVATAR_DEFAULT_IMAGE = "http://localhost:8000" + MEDIA_URL + "img/gravatar.png"
 GRAVATAR_DEFAULT_IMAGE = MEDIA_URL + "img/gravatar.png"
+
+ROBOTS_CACHE_TIMEOUT = 60*60*24
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -132,5 +136,5 @@ INSTALLED_APPS = (
     'markitup',
     'tagging',
     'gravatar',
-    #'dbtemplates',
+    'robots',
 )

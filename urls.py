@@ -39,6 +39,12 @@ if 'contact_form' in settings.INSTALLED_APPS:
         (r'^kontakt/', include('contact_form.urls')),
     )
 
+# Robots
+if 'robots' in settings.INSTALLED_APPS:
+    urlpatterns += patterns('',
+        (r'^robots.txt$', include('robots.urls')),
+    )
+
 # Blog
 if 'blog' in settings.INSTALLED_APPS:
     urlpatterns += patterns('',
