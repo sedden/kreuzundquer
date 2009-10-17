@@ -9,12 +9,20 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 FORCE_SCRIPT_NAME=""
 
+DEFAULT_FROM_EMAIL = "webmaster@kreuzundquer-ev.de"
+
+# Empfaenger fuer Fehlermeldungen
 ADMINS = (
-    ('Sebastian Meichssner', 'sebastian.meichssner@kreuzundquer-ev.de'),
     ('Stefan Jenkner', 'stefan@jenkner.org'),
 )
 
-MANAGERS = ADMINS
+# Empfaenger fuer Kontakt-Formular
+MANAGERS = (
+    ('Michaela Richter', 'ela@kreuzundquer-ev.de'),
+    ('Michaela Richter', 'ela-kolumbine@web.de'),
+    ('Sebastian Meichssner', 'basti@kreuzundquer-ev.de'),
+)
+
 
 DATABASE_ENGINE = 'postgresql_psycopg2'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
 DATABASE_NAME = PRJ_NAME       # Or path to database file if using sqlite3.
