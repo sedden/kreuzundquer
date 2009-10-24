@@ -1,35 +1,26 @@
-{% load tagging_tags %}
-{# load pingback_tags #}
 {% load comments %}
-{% load gravatar %}
 
-	{% tags_for_object object as tags%}
 	{% get_comment_count for object as comment_count %}
-	{# get_pingback_count for object as pingback_count #}
 
 	<div class="post" about="{{ object.get_absolute_url }}">
 
+		{% if comment_count %}
+		<div style="float: right; background: #fff url('/static/img/comment.png') no-repeat right top; height: 22px; width: 22px;">
+		<p style="text-align: center;"><a
+			style="color: #fff; text-decoration:none;"
+			href="{{ object.get_absolute_url }}#comments"
+			title="{{ comment_count }} Kommentar{{ comment_count|pluralize:"e" }}">{{ comment_count }}</a></p>
+		</div>
+		{% endif %}
+
 	<h3><a property="dc:title" href="{{ object.get_absolute_url }}" title="{{ object.excerpt }}" >{{ object.title }}</a></h3>
+
 	<p>
 	  	<span property="dc:creator" content="{{ object.author.first_name }} {{ object.author.last_name }}">
 		Von {{ object.author.first_name }} {{ object.author.last_name }}</span>
 		<span property="dc:date" content="{{ object.date|date:"Y-m-d\TH:i:s\Z" }}">am {{ object.date|date:"l, \d\e\n d. F Y" }}</span>
 
-		{% if comment_count %}
-		<br />
-		<span><a href="{{ object.get_absolute_url }}#comments"
-		>{{ comment_count }} Kommentar{{ comment_count|pluralize:"e" }}</a>
-		</span>
-		{% endif %}
-		<!-- <span><a href="{{ object.get_absolute_url }}">...lesen!</a></span> -->
 	</p>
-	<!--
-		<div class="alignleft"><small>Schlagw&ouml;rter:
-		{% for tag in tags %}
-		<a rel="tag" href="/archive/{{ tag.name|slugify }}/">{{ tag.name }}</a>
-		{% endfor %}
-		</small></div>
-	-->
 
 	<div class="clear">&nbsp;</div>
 

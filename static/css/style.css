@@ -62,7 +62,7 @@ ul#navigation li { display: block; padding: .2em 0; text-align: center; text-dec
 .content { word-spacing: 0.2em; line-height: 1.5em; font-size: 12px; text-align: left; }
 .content p { margin: 0px 0px 14px; text-align: justify; }
 .content p a { color: #f60; }
-.content h3 { margin: 8px 0 16px; font-size: 16px; }
+.content h3 { margin: 4px 0 10px; font-size: 16px; }
 .content h4 { margin: 14px 0 8px; font-size: 14px; }
 .content textarea { width: 100%; }
 

@@ -5,36 +5,33 @@
 
 {% ifnotequal comment_count 0 %}
 
-	<div class="grid_2 alpha title">
-		<h2>Kommentare</h2>
-	</div>
+<div class="grid_6 prefix_2 suffix_2 content alpha omega">
 
-	<div class="grid_6 omega content">
+	<h4 id="comments">Kommentare zu &#8220;{{ object.title  }}&#8221;:</h4>
+	<ol>
+	{% for comment in comment_list %}
+			<li id="c{{ comment.id }}" class="{% cycle '' 'alt' %}">
+			<img style="float:right;" src="{% gravatar_for_email comment.user_email 60 %}" />
 
-		<h3 id="comments">Kommentare zu &#8220;{{ object.title  }}&#8221;:</h3>
-		<ol>
-		{% for comment in comment_list %}
-			<li style="padding-left: 65px; background: #fff url('{% gravatar_for_email comment.user_email 60 %}') no-repeat; min-height: 60px;" id="c{{ comment.id }}" class="{% cycle '' 'alt' %}">
-
-				<small class="meta">Am {{ comment.submit_date|date:"d. F Y \u\m G:i" }} sagt
-				{% if comment.user_url %}
-					<a href="{{ comment.user_url }}">{{ comment.user_name }}</a>:
-				{% else %}
-					{{ comment.user_name }}:
-				{% endif %}
-				</small><br />
-				{{ comment.comment|markdown }}
-			</li>
-		{% endfor %}
-		</ol>
-	</div>
+			<small class="meta">Am {{ comment.submit_date|date:"d. F Y \u\m G:i" }} sagt
+			{% if comment.user_url %}
+				<a href="{{ comment.user_url }}">{{ comment.user_name }}</a>:
+			{% else %}
+				{{ comment.user_name }}:
+			{% endif %}
+			</small><br />
+			{{ comment.comment|markdown }}
+		</li>
+	{% endfor %}
+	</ol>
+</div>
 
 {% endifnotequal %}
 
 
-<div class="grid_6 alpha omega prefix_2 suffix_2 content">
+<div class="grid_6 prefix_2 suffix_2 content alpha omega">
 
-	<h3 id="respond">Kommentar abgeben</h3>
+	<h4 id="respond">Kommentar abgeben</h4>
 
 	{% get_comment_form for object as form %} 
 	<form action="{% comment_form_target %}" method="post" class="uniForm inlineLabels">
