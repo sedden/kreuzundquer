@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
-{% load markup %}
+{% load markup tagging_tags %}
 
 {% block title %}&bull; {{ flatpage.title }}{% endblock %}
-{% block description %}{{ flatpage.title }}{% endblock %}
 {% block robots %}index,follow{% endblock %}
+{% block description %}{{ flatpage.title }}{% endblock %}
+{% block keywords %}{% tags_for_object flatpage as tags %}{{ tags|join:", " }}{% endblock %}
 
 {% block content %}
 

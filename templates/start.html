@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 
-{% load markup objectlist %}
+{% load markup objectlist tagging_tags %}
 
 {% block description %}kreuzundquer e.V. Start{% endblock %}
 {% block robots %}index,follow{% endblock %}
+{% block keywords %}{% tags_for_object flatpage as tags %}{{ tags|join:", " }}{% endblock %}
 
 {% block catcher %}
 	<img src="{{ MEDIA_URL }}img/start.png" alt="kreuzundqeuer e.V."/>
