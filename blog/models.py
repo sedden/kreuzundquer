@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
-#from django.contrib.comments.moderation import CommentModerator, moderator
+from django.contrib.comments.moderation import CommentModerator, moderator
 
 from datetime import time, date, datetime
 from time import strptime
@@ -15,13 +15,15 @@ from blog.fields import MarkdownTextField
 class Entry(models.Model):
 	
 	title = models.CharField(_('title'), max_length=200)
-	slug = models.SlugField(_('slug'), unique='True')
+	slug = models.SlugField(_('slug'), unique=True,
+		help_text='Wird automatisch aus Titel erzeugt')
 	date = models.DateTimeField(_('date/time submitted'))
 	body = MarkdownTextField(_('content'))
-	excerpt = MarkdownTextField(_('excerpt')) 
+	excerpt = MarkdownTextField(_('excerpt'), blank=True,
+		help_text='Eine Kurzfassung vom Inhalt (SMS-Version)')
 
 	enable_comments = models.BooleanField(_('enable comments'), default=True)
-	is_public = models.BooleanField(_('is public'), default=True)
+	is_public = models.BooleanField(_('is public'), default=False)
 
 	tags = TagField()
 
@@ -44,7 +46,10 @@ class Entry(models.Model):
 	def __unicode__(self):
 		return u'%s' % self.title
 
-#class EntryModerator(CommentModerator):
-#	email_notification = True
-#	enable_field = 'enable_comments'
-#moderator.register(Entry, EntryModerator)
+class EntryModerator(CommentModerator):
+	email_notification = True
+	enable_field = 'enable_comments'
+	auto_close_field = 'date'
+	close_after = 14
+
+moderator.register(Entry, EntryModerator)

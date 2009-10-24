@@ -1,0 +1,5 @@
+Ein neuer Kommentar wurde abgegeben für: {{ content_object }}
+
+Inhalt des Kommentars:
+
+{{ comment }}

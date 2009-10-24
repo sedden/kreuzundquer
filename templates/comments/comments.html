@@ -11,7 +11,7 @@
 	<ol>
 	{% for comment in comment_list %}
 			<li id="c{{ comment.id }}" class="{% cycle '' 'alt' %}">
-			<img style="float:right;" src="{% gravatar_for_email comment.user_email 60 %}" />
+			<span class="alignright">{% gravatar_img_for_email comment.user_email 60 %}</span>
 
 			<small class="meta">Am {{ comment.submit_date|date:"d. F Y \u\m G:i" }} sagt
 			{% if comment.user_url %}

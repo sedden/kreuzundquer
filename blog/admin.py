@@ -15,13 +15,13 @@ class EntryAdmin(VersionAdmin):
 		'slug': ('title',)
 	}
 
-	fieldsets = (
-		(None, { 'fields': ('title', 'date', 'slug', 'body', 'tags') }),
-		('Erweitert', {
-			'classes': ('collapse',),
-			'fields': ('excerpt', 'enable_comments', 'is_public' )
-		} ),
-	)
+#	fieldsets = (
+#		(None, { 'fields': ('title', 'date', 'slug', 'body', 'tags') }),
+#		('Erweitert', {
+#			'classes': ('collapse',),
+#			'fields': ('excerpt', 'enable_comments', 'is_public' )
+#		} ),
+#	)
 
 	list_display = ('title', 'date', 'tags', 'is_public')
 	list_filter = ('is_public','date')

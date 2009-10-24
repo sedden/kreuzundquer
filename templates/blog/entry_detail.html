@@ -38,7 +38,7 @@
 	<div class="grid_6 omega content">
 
 		<div class="post" about="{{ object.get_absolute_url }}">
-		<!-- <span style="float:right;">{% gravatar_img_for_email object.author.email 60 %}</span> -->
+		<span class="alignright">{% gravatar_img_for_email object.author.email 60 %}</span>
 
 		<h3><a property="dc:title" href="{{ object.get_absolute_url }}">{{ object.title }}</a></h3>
 		<p>

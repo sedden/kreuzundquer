@@ -24,6 +24,7 @@ MANAGERS = (
     ('Michaela Richter', 'ela@kreuzundquer-ev.de'),
     ('Michaela Richter', 'ela-kolumbine@web.de'),
     ('Sebastian Meichssner', 'basti@kreuzundquer-ev.de'),
+    ('Stefan Jenkner', 'stefan@jenkner.org'),
 )
 
 
@@ -114,7 +115,7 @@ MARKITUP_SET = 'markitup/sets/markdown'
 MARKITUP_SKIN = 'markitup/skins/simple'
 MARKITUP_PREVIEW_FILTER = ('markdown.markdown', {'safe_mode': True})
 
-GRAVATAR_DEFAULT_IMAGE = MEDIA_URL + "img/gravatar.png"
+GRAVATAR_DEFAULT_IMAGE = 'http://www.kreuzundquer-ev.de' + MEDIA_URL + 'img/gravatar.jpg'
 
 ROBOTS_CACHE_TIMEOUT = 60*60*24
 

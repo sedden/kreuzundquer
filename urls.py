@@ -8,7 +8,7 @@ from django.contrib.sitemaps import FlatPageSitemap, GenericSitemap
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'^admin/(.*)', admin.site.root),
+    (r'^admin/', include(admin.site.urls)),
 )
 
 # Sitemaps, Feeds

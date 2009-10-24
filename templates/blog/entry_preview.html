@@ -5,7 +5,7 @@
 	<div class="post" about="{{ object.get_absolute_url }}">
 
 		{% if comment_count %}
-		<div style="float: right; background: #fff url('/static/img/comment.png') no-repeat right top; height: 22px; width: 22px;">
+		<div class="alignright" style="background: #fff url('/static/img/comment.png') no-repeat right top; height: 22px; width: 22px;">
 		<p style="text-align: center;"><a
 			style="color: #fff; text-decoration:none;"
 			href="{{ object.get_absolute_url }}#comments"
