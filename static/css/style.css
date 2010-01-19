@@ -60,13 +60,13 @@ ul#navigation li { display: block; padding: .2em 0; text-align: center; text-dec
 .title img { margin: 5px 5px; padding: 2px 0px; float:left; }
 
 .content { word-spacing: 0.2em; line-height: 1.5em; font-size: 12px; text-align: left; }
-.content p { margin: 0px 0px 14px; text-align: justify; }
+.content p { margin: 0px 0px 10px; text-align: justify; }
 .content p a { color: #f60; }
 .content h3 { margin: 4px 0 10px; font-size: 16px; }
 .content h4 { margin: 14px 0; font-size: 14px; clear: both; }
 .content textarea { width: 100%; }
 
-.content img { border: 1px solid #f60; padding: 1px; float:right; margin: 0px 0px 0px 15px; }
+.content img { border: 1px solid #f60; padding: 1px; float:right; margin: 0px 0px 10px; }
 
 .meta { color: #999; } 
 .meta small a { color: #f60; }
