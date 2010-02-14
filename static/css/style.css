@@ -66,7 +66,7 @@ ul#navigation li { display: block; padding: .2em 0; text-align: center; text-dec
 .content h4 { margin: 14px 0; font-size: 14px; clear: both; }
 .content textarea { width: 100%; }
 
-.content img { border: 1px solid #f60; padding: 1px; float:right; margin: 0px 0px 10px; }
+.content img { border: 1px solid #f60; padding: 1px; float:right; margin: 3px 0px 0px 10px; }
 
 .meta { color: #999; } 
 .meta small a { color: #f60; }
