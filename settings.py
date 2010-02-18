@@ -16,15 +16,14 @@ DEFAULT_FROM_EMAIL = "webmaster@kreuzundquer-ev.de"
 
 # Empfaenger fuer Fehlermeldungen
 ADMINS = (
-    ('Stefan Jenkner', 'stefan@jenkner.org'),
+    ('Stefan Jenkner', 'webmaster@kreuzundquer-ev.de'),
 )
 
 # Empfaenger fuer Kontakt-Formular
 MANAGERS = (
     ('Michaela Richter', 'ela@kreuzundquer-ev.de'),
-    ('Michaela Richter', 'ela-kolumbine@web.de'),
-    ('Sebastian Meichssner', 'basti@kreuzundquer-ev.de'),
-    ('Stefan Jenkner', 'stefan@jenkner.org'),
+    ('Stefan Jenkner', 'stefan@kreuzundquer-ev.de'),
+    ('Susann Jenkner', 'susann@kreuzundquer-ev.de'),
 )
 
 
