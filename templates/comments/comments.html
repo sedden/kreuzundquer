@@ -10,14 +10,22 @@
 	<h4 id="comments">Kommentare zu &#8220;{{ object.title  }}&#8221;:</h4>
 	<ol>
 	{% for comment in comment_list %}
-			<li id="c{{ comment.id }}" class="{% cycle '' 'alt' %}">
-			<span class="alignright">{% gravatar_img_for_email comment.user_email 60 %}</span>
-
-			<small class="meta">Am {{ comment.submit_date|date:"d. F Y \u\m G:i" }} sagt
-			{% if comment.user_url %}
-				<a href="{{ comment.user_url }}">{{ comment.user_name }}</a>:
+			<li id="c{{ comment.id }}" class="{% cycle '' 'alt' %}" style="min-height: 50px;" >
+			{% if comment.user_id %}
+			<span class="alignright" style="min-height: 50px;">{% gravatar_img_for_email comment.user.email 40 %}</span>
 			{% else %}
-				{{ comment.user_name }}:
+			<span class="alignright" style="min-height: 50px;">{% gravatar_img_for_email comment.user_email 40 %}</span>
+			{% endif %}
+
+			<small class="meta"><span style="color: #f60;">#{{ comment.id }}</span> Am {{ comment.submit_date|date:"d. F Y \u\m G:i" }} sagt
+			{% if comment.user_id %}
+					{{ comment.user.first_name }}:
+			{% else %}
+				{% if comment.user_url %}
+					<a href="{{ comment.user_url }}">{{ comment.user_name }}</a>:
+				{% else %}
+					{{ comment.user_name }}:
+				{% endif %}
 			{% endif %}
 			</small><br />
 			{{ comment.comment|markdown }}
