@@ -1,8 +1,10 @@
 from django.conf import settings
 from django.conf.urls.defaults import *
 from django.contrib import admin
-
 from django.contrib.sitemaps import FlatPageSitemap, GenericSitemap
+
+from blog.urls import archive_common
+from blog.feeds import LatestEntriesAtom, LatestCommentsAtom
 
 # Admin
 admin.autodiscover()
@@ -10,10 +12,6 @@ admin.autodiscover()
 urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
 )
-
-# Sitemaps, Feeds
-sitemaps = { 'flatpages': FlatPageSitemap }
-feeds = {}
 
 # Debug? Serve static files!
 if settings.DEBUG:
@@ -50,13 +48,6 @@ if 'blog' in settings.INSTALLED_APPS:
     urlpatterns += patterns('',
         (r'^blog/', include('blog.urls')),
     )
-    from blog.urls import archive_common
-    from blog.feeds import LatestEntriesRss, LatestEntriesAtom, LatestCommentsRss, LatestCommentsAtom
-    sitemaps['blog'] = GenericSitemap(archive_common, priority=0.8)
-    feeds['atom'] = LatestEntriesAtom
-    feeds['rss'] = LatestEntriesRss
-    feeds['comments-atom'] = LatestCommentsAtom
-    feeds['comments-rss'] = LatestCommentsRss
 
 # Registration
 if 'django.contrib.auth' in settings.INSTALLED_APPS:
@@ -74,11 +65,21 @@ if 'django.contrib.comments' in settings.INSTALLED_APPS:
 # Sitemaps
 if 'django.contrib.sitemaps' in settings.INSTALLED_APPS:
 	urlpatterns += patterns('',
-		(r'^sitemap.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
+		(r'^sitemap.xml$', 'django.contrib.sitemaps.views.sitemap', {
+			'sitemaps': {
+				'flatpages': FlatPageSitemap,
+				'blog': GenericSitemap(archive_common, priority=0.8),
+			} }
+		),
 	)
 
 # Feeds
 if 'django.contrib.syndication' in settings.INSTALLED_APPS:
 	urlpatterns += patterns('',
-		(r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed', {'feed_dict': feeds}),
+		(r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed', {
+			'feed_dict': {
+				'atom': LatestEntriesAtom,
+				'comments-atom': LatestCommentsAtom
+			} }
+		),
 	)
