@@ -10,7 +10,7 @@
 
 {% block content %}
 
-	<div class="grid_8 alpha omega">
+	<div class="grid_10 alpha omega">
 		<ul id="navigation">
 		{% if object.get_previous_public_by_date %}
 			<li class="alignleft">&laquo;
@@ -35,7 +35,7 @@
 	<h2>{{ object.date|date:"d. F" }}</h2>
 	</div>
 
-	<div class="grid_6 omega content">
+	<div class="grid_8 omega content">
 
 		<div class="post" about="{{ object.get_absolute_url }}">
 		<span class="alignright">{% gravatar_img_for_email object.author.email 60 %}</span>
