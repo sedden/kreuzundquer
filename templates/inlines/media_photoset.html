@@ -1,0 +1,26 @@
+<div class="photoset">
+<h4>Photoset: {{ object.title }}</h4>
+<p>{{ object.description }}</p>
+{% for photo in object.photos.all %}
+
+	<div class="grid_2 {% if forloop.first %}alpha{% endif %}{% ifequal forloop.counter 4 %}omega{% endifequal %}">
+		
+	{% if photo.display %}
+	<a rel="{{ object.slug }}" class="colorbox" href="{{ photo.display.url }}" title="{{ photo.title }}">
+	<img
+		src="{{ photo.thumbnail.url }}"
+		width="{{ photo.thumbnail.width }}"
+		height="{{ photo.thumbnail.height }}"
+		alt="{{ photo.title }}"
+		title="{{ photo.title }}"
+		class="hover" />
+	</a>
+	{% else %}
+	<img src="{{ photo.url }}" title="{{ photo.title }}" alt="{{ photo.title }}" />
+	{% endif %}
+
+	</div>
+
+{% endfor %}
+</div>
+<div class="clear">&nbsp;</div>

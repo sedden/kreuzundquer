@@ -78,6 +78,9 @@ blockquote:after { content: close-quote; }
 #footer ul li { padding: 3px 0; }
 #footer a { color: #444; }
 
+#flatpage-das-team img,
+#flatpage-sponsoren img { float:right; margin: 3px 0 0 10px; }
+
 /* Menu, Listen und Navigation */
 
 ul.menubar { margin: 0; padding-left: 0; white-space: nowrap; }
@@ -106,10 +109,14 @@ ul#navigation li { display: block; padding: .2em 0; text-align: center; text-dec
 .content h4 { margin: 20px 0 0; font-size: 14px; clear: both; }
 .content textarea { width: 100%; }
 
-.content img { border: 1px solid #f60; padding: 1px; float:right; margin: 3px 0 0 10px; }
+.content img { border: 1px solid #f60; padding: 1px; }
 
 .meta { color: #999; } 
 .meta small a { color: #f60; }
+
+.content .alignright img { margin: 3px 0 0 10px; }
+
+.photoset { background-color: #fff; color: #555; }
 
 /* Tags */
 

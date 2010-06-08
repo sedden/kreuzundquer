@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load markup tagging_tags %}
+{% load markup tagging_tags inlines %}
 
 {% block title %}&bull; {{ flatpage.title }}{% endblock %}
 {% block robots %}index,follow{% endblock %}
@@ -17,8 +17,8 @@
 	<h2>{{ flatpage.title }}</h2>
 	</div>
 
-	<div class="grid_8 omega content">
-		{{ flatpage.content|markdown }}
+	<div id="flatpage-{{ flatpage.title|slugify }}" class="grid_8 omega content">
+		{{ flatpage.content|markdown|render_inlines }}
 	</div>
 
 	<div class="clear">&nbsp;</div>

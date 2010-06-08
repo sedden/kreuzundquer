@@ -138,4 +138,7 @@ INSTALLED_APPS = (
     'gravatar',
     'robots',
     'dbtemplates',
+    'imagekit',
+    'basic.media',
+    'basic.inlines',
 )

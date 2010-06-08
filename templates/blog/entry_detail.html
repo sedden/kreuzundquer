@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load markup i18n tagging_tags ipernity gravatar %}
+{% load markup i18n tagging_tags ipernity gravatar inlines %}
 
 {% block title %}&bull; {{ object.title }}{% endblock %}
 {% block robots %}index,nofollow{% endblock %}
@@ -53,8 +53,10 @@
 		<div class="clear">&nbsp;</div>
 		
 		<span class="justify">
-		{{ object.body_html|safe|iperlink }}
+		{{ object.body_html|safe|render_inlines }}
 		</span>
+
+		<div class="clear">&nbsp;</div>
 
 		</div>
 

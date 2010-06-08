@@ -1,1 +1,4 @@
 *.pyc
+
+static/media/
+static/cache/
