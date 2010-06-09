@@ -1,7 +1,5 @@
 from django import template
 
-from xml.sax import parseString
-from xml.sax.handler import ContentHandler
 from urllib2 import urlopen
 
 import feedparser

@@ -1,16 +1,10 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.contrib.comments.moderation import CommentModerator, moderator
 
-from datetime import time, date, datetime
-from time import strptime
-
-from tagging.models import Tag
 from tagging.fields import TagField
-
-from blog.fields import MarkdownTextField
+from blog.fields import MarkdownTextField  
 
 class Entry(models.Model):
 	
