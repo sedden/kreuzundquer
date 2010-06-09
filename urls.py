@@ -83,3 +83,9 @@ if 'django.contrib.syndication' in settings.INSTALLED_APPS:
 			} }
 		),
 	)
+
+# Rosetta
+if 'rosetta' in settings.INSTALLED_APPS:
+	urlpatterns += patterns('',
+		url(r'^rosetta/', include('rosetta.urls')),
+	)
