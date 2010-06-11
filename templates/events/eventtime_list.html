@@ -1,0 +1,37 @@
+{% extends "events/base_events.html" %}
+
+{% load markup %}
+
+{% block title %}&bull; Events{% endblock %}
+
+
+{% block content %}
+
+{% for eventtime in object_list %}
+
+    {% ifchanged eventtime.start.date %}
+    <div class="grid_2 alpha title">
+	<h2>{{ eventtime.start|date:"d. F" }}</h2>
+	</div>
+	{% else %}
+     <div class="grid_2 alpha">&nbsp;</div>  
+	{% endifchanged %}
+
+	<div class="grid_8 omega content">
+		<h3>{{ eventtime.start|time:"H\:i" }} Uhr - {{ eventtime.event.title }}</h3>
+		{{ eventtime.event.description|markdown }}
+		<p>
+		Start: {{ eventtime.start|date:"H\:i" }} Uhr<br />
+		{% if eventtime.end %}Ende: {{ eventtime.end|time:"H\:i" }} Uhr{% endif %}
+		</p>
+		{% if eventtime.event.place %}
+		<p>Wo: {{  eventtime.event.place }}</p>
+		{% endif %}
+
+	</div>
+
+	<div class="clear">&nbsp;</div>
+
+{% endfor %}
+
+{% endblock %}

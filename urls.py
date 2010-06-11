@@ -89,3 +89,9 @@ if 'rosetta' in settings.INSTALLED_APPS:
 	urlpatterns += patterns('',
 		url(r'^rosetta/', include('rosetta.urls')),
 	)
+
+# Events
+if 'basic.events' in settings.INSTALLED_APPS:
+	urlpatterns += patterns('',
+		url(r'^events/', include('basic.events.urls')),
+	)
