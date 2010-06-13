@@ -1,11 +1,13 @@
 from django.views.generic import date_based, list_detail
 from basic.events.models import *
 
+from datetime import datetime, timedelta
+
 
 def event_list(request, page=0):
     return list_detail.object_list(
         request,
-        queryset=EventTime.objects.all().order_by('start'),
+        queryset=EventTime.objects.filter(start__gte=(datetime.today() - timedelta(hours=12))).order_by('start'),
         paginate_by=20,
         page=page,
     )

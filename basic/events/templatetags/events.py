@@ -1,7 +1,8 @@
 import re
 
 from django import template
-from basic.events.models import Event, EventTime
+from basic.events.models import EventTime
+from datetime import datetime, timedelta
 
 register = template.Library()
 
@@ -12,7 +13,7 @@ class UpcomingEventsNode(template.Node):
         self.limit = limit
 
     def render(self, context):
-        context[self.var_name] = EventTime.objects.order_by('-start')[:self.limit]
+        context[self.var_name] = EventTime.objects.filter(start__gte=(datetime.today() - timedelta(hours=12))).order_by('start')[:self.limit]
 
 
 @register.tag

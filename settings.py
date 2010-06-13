@@ -126,6 +126,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.flatpages',
     'django.contrib.markup',
+    'django.contrib.humanize',
     'django.contrib.sitemaps',
     'django.contrib.syndication',
     'django.contrib.comments',
@@ -141,4 +142,6 @@ INSTALLED_APPS = (
     'imagekit',
     'basic.media',
     'basic.inlines',
+    'basic.places',
+    'basic.events',
 )

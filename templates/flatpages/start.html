@@ -1,0 +1,52 @@
+{% extends "flatpages/default.html" %}
+
+{% block content %}
+
+{% load markup objectlist events humanize %}
+
+        <div id="catcher" class="grid_8 prefix_2 alpha omega catcher">
+        <img src="{{ MEDIA_URL }}img/start.png" alt="kreuzundqeuer e.V."/>
+        </div>
+
+        <div class="clear">&nbsp;</div>
+
+        <div class="grid_8 prefix_2 alpha omega content">
+                {{ flatpage.content|markdown }}
+        </div>
+
+        {% get_object_list blog entry as entries %}
+
+        <div class="grid_2 alpha title">
+                <h2>Neues im Blog</h2>
+        </div>
+
+        <div class="grid_5 content">
+                {% for object in entries|slice:":3" %}
+                        {% include "blog/entry_preview.html" %}
+                {% endfor %}
+        </div>
+
+        <div class="grid_3 omega">
+        <img style="margin-top:30px;border:0;" src="/static/img/b_oeffnungszeiten.png" alt="KUQ! vorbei: Mitwoch bis Sonntag 14:00 Uhr bis 21:00 Uhr" title="Freitag und Samstag auch gern länger!" />
+        </div>
+
+        <div class="clear">&nbsp;</div>
+
+	<!-- {% get_upcoming_events 3 as upcoming_events %} -->
+	{% if upcoming_events %}
+
+	        <div class="grid_2 alpha title">
+	                <h2>Events</h2>
+	        </div>
+
+	        <div class="grid_8 content omega">
+		{% for object in upcoming_events %}
+			<h3><a href="{{ object.get_absolute_url }}">{{ object.start|naturalday|capfirst }} - {{ object.event.title }}</a></h3>
+			<p>Start: {{ object.start|date:"H\:i" }} Uhr - {{ object.event.place }}</p>
+		{% endfor %}
+	        </div>
+
+	{% endif %}
+
+
+{% endblock %}

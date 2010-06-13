@@ -5,6 +5,7 @@ from django.contrib.sitemaps import FlatPageSitemap, GenericSitemap
 
 from blog.urls import archive_common
 from blog.feeds import LatestEntriesAtom, LatestCommentsAtom
+from basic.events.sitemaps import EventTimeSitemap
 
 # Admin
 admin.autodiscover()
@@ -69,6 +70,7 @@ if 'django.contrib.sitemaps' in settings.INSTALLED_APPS:
 			'sitemaps': {
 				'flatpages': FlatPageSitemap,
 				'blog': GenericSitemap(archive_common, priority=0.8),
+				'events': EventTimeSitemap
 			} }
 		),
 	)
