@@ -9,11 +9,7 @@
 
 	{% ifchanged eventtime.start.date %}
 	<div class="grid_2 alpha title">
-	{% if forloop.first %}
 	<h2>{{ eventtime.start|naturalday|capfirst }}</h2>
-	{% else %}
-	<h2>{{ eventtime.start|date:"d. F" }}</h2>
-	{% endif %}
 	</div>
 	{% else %}
 	<div class="grid_2 alpha">&nbsp;</div>  

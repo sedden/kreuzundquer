@@ -58,6 +58,14 @@ USE_I18N = True
 #	('en', _('English')),
 #)
 
+# Date and Time
+# http://docs.djangoproject.com/en/1.1/ref/templates/builtins/#ttag-now
+DATE_FORMAT = 'd. F'
+#DATETIME_FORMAT = ''
+TIME_FORMAT = 'H\:i\ \U\h\\r'
+#YEAR_MONTH_FORMAT = ''
+#MONTH_DAY_FORMAT = ''
+
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = path.join(PRJ_DIR,'static')
