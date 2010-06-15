@@ -26,7 +26,7 @@
 	{% endwith %}
 
 {% if object.event.place.latitude and object.event.place.longitude %}
-	<div id="place_map" style="width:640px; height:300px;">&nbsp;</div>
+	<div id="place_map" style="width:620px; height:300px;">&nbsp;</div>
 	<script type="text/javascript">
 	if (GBrowserIsCompatible()) {
 	var latlong = new GLatLng({{ object.event.place.latitude }}, {{ object.event.place.longitude }});

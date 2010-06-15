@@ -1,11 +1,11 @@
 {% load markup %}
 
-<h3><a href="{{ eventtime.get_absolute_url }}">{{ eventtime.start|time:"H\:i" }} Uhr - {{ eventtime.event.title }}</a></h3>
+<h3><a href="{{ eventtime.get_absolute_url }}">{{ eventtime.start|time }} Uhr - {{ eventtime.event.title }}</a></h3>
 {{ eventtime.event.description|markdown }}
 <p>
-Start: {{ eventtime.start|time }}<br />
-{% if eventtime.end %}Ende: {{ eventtime.end|time }}{% endif %}
+Start: {{ eventtime.start|time }} Uhr<br />
+{% if eventtime.end %}Ende: {{ eventtime.end|time }} Uhr{% endif %}
 </p>
 {% if eventtime.event.place %}
-<p>Wo: {{  eventtime.event.place }}</p>
+<p>Wo: {{ eventtime.event.place }}</p>
 {% endif %}

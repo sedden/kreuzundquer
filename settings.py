@@ -62,7 +62,7 @@ USE_I18N = True
 # http://docs.djangoproject.com/en/1.1/ref/templates/builtins/#ttag-now
 DATE_FORMAT = 'd. F'
 #DATETIME_FORMAT = ''
-TIME_FORMAT = 'H\:i\ \U\h\\r'
+TIME_FORMAT = 'H\:i'
 #YEAR_MONTH_FORMAT = ''
 #MONTH_DAY_FORMAT = ''
 

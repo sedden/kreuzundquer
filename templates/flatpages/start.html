@@ -42,7 +42,7 @@
 	        <div class="grid_8 content omega">
 		{% for object in upcoming_events %}
 			<h3><a href="{{ object.get_absolute_url }}">{{ object.start|naturalday }} - {{ object.event.title }}</a></h3>
-			<p>Start: {{ object.start|time }} - {{ object.event.place }}</p>
+			<p>Start: {{ object.start|time }} Uhr - {{ object.event.place }}</p>
 		{% endfor %}
 	        </div>
 
