@@ -22,7 +22,7 @@
 
         <div class="grid_5 content">
                 {% for object in entries|slice:":3" %}
-                        {% include "blog/entry_preview.html" %}
+		{% if object.is_public %}{% include "blog/entry_preview.html" %}{% endif %}
                 {% endfor %}
         </div>
 
@@ -41,7 +41,7 @@
 
 	        <div class="grid_8 content omega">
 		{% for object in upcoming_events %}
-			<h3><a href="{{ object.get_absolute_url }}">{{ object.start|naturalday }} - {{ object.event.title }}</a></h3>
+			<h3><a href="{{ object.get_absolute_url }}">{{ object.start|naturalday|capfirst }} - {{ object.event.title }}</a></h3>
 			<p>Start: {{ object.start|time }} Uhr - {{ object.event.place }}</p>
 		{% endfor %}
 	        </div>
