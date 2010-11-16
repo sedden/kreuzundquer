@@ -3,7 +3,16 @@
 <p>{{ object.description }}</p>
 {% for photo in object.photos.all %}
 
-	<div class="grid_2 {% if forloop.first %}alpha{% endif %}{% ifequal forloop.counter 4 %}omega{% endifequal %}">
+<div class="grid_2
+    {% ifequal forloop.counter 1 %}alpha{% endifequal %}
+    {% ifequal forloop.counter 5 %}alpha{% endifequal %}
+    {% ifequal forloop.counter 9 %}alpha{% endifequal %}
+    {% ifequal forloop.counter 13 %}alpha{% endifequal %}
+    {% ifequal forloop.counter 4 %}omega{% endifequal %}
+    {% ifequal forloop.counter 8 %}omega{% endifequal %}
+    {% ifequal forloop.counter 12 %}omega{% endifequal %}
+    {% ifequal forloop.counter 16 %}omega{% endifequal %}
+    ">
 		
 	{% if photo.display %}
 	<a rel="{{ object.slug }}" class="colorbox" href="{{ photo.display.url }}" title="{{ photo.title }}">

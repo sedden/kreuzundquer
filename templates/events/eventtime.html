@@ -1,7 +1,7 @@
-{% load markup %}
+{% load markup inlines %}
 
 <h3><a href="{{ eventtime.get_absolute_url }}">{{ eventtime.start|time }} Uhr - {{ eventtime.event.title }}</a></h3>
-{{ eventtime.event.description|markdown }}
+{{ eventtime.event.description|markdown|render_inlines }}
 <p>
 Start: {{ eventtime.start|time }} Uhr<br />
 {% if eventtime.end %}Ende: {{ eventtime.end|time }} Uhr{% endif %}
