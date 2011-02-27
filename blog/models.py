@@ -44,6 +44,8 @@ class EntryModerator(CommentModerator):
 	email_notification = True
 	enable_field = 'enable_comments'
 	auto_close_field = 'date'
+	moderate_after = -1
+	auto_moderate_field = 'date'
 	close_after = 14
 
 moderator.register(Entry, EntryModerator)

@@ -3,3 +3,6 @@ Ein neuer Kommentar wurde abgegeben für: {{ content_object }}
 Inhalt des Kommentars:
 
 {{ comment }}
+
+Vollständiger Kommentar unter:
+http://www.kreuzundquer-ev.de{{ comment.get_absolute_url }}

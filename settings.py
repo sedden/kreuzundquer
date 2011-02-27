@@ -12,11 +12,13 @@ FORCE_SCRIPT_NAME=""
 APPEND_SLASH = False
 PREPEND_WWW = True
 
+EMAIL_SUBJECT_PREFIX = "[KUQ] "
+SERVER_EMAIL = "webmaster@kreuzundquer-ev.de"
 DEFAULT_FROM_EMAIL = "webmaster@kreuzundquer-ev.de"
 
 # Empfaenger fuer Fehlermeldungen
 ADMINS = (
-    ('Stefan Jenkner', 'webmaster@kreuzundquer-ev.de'),
+    ('Stefan Jenkner', 'stefan@kreuzundquer-ev.de'),
 )
 
 # Empfaenger fuer Kontakt-Formular
