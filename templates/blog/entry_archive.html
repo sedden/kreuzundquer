@@ -11,4 +11,19 @@
 		{% include "blog/entry_preview.html" %}
 	{% endfor %}
 
+    {% if page_obj %}
+    <ul id="navigation">
+        {% if page_obj.has_previous %}
+        <li class="alignleft">
+            &laquo; <a href="/blog/page/{{ page_obj.previous_page_number }}/">jüngere Posts</a>
+        </li>
+        {% endif %}
+        {% if page_obj.has_next %}
+        <li class="alignright">
+            <a href="/blog/page/{{ page_obj.next_page_number }}/">ältere Posts</a> &raquo;
+        </li>
+        {% endif %}
+    </ul>
+    {% endif %}
+
 {% endblock %}

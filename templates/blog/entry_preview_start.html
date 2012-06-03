@@ -1,0 +1,29 @@
+{% load comments %}
+
+	{% get_comment_count for object as comment_count %}
+
+	<div class="post" about="{{ object.get_absolute_url }}">
+
+		{% if comment_count %}
+		<div class="alignright" style="background: #fff url('/static/img/comment.png') no-repeat right top; height: 22px; width: 22px; margin-right: 140px;">
+		<p style="text-align: center;"><a
+			style="color: #fff; text-decoration:none;"
+			href="{{ object.get_absolute_url }}#comments"
+			title="{{ comment_count }} Kommentar{{ comment_count|pluralize:"e" }}">{{ comment_count }}</a></p>
+		</div>
+		{% endif %}
+
+	<h3><a property="dc:title" href="{{ object.get_absolute_url }}" title="{{ object.excerpt }}" >{{ object.title }}</a></h3>
+
+	<p>
+	  	<span property="dc:creator" content="{{ object.author.first_name }} {{ object.author.last_name }}">
+		Von {{ object.author.first_name }} {{ object.author.last_name }}</span>
+		<span property="dc:date" content="{{ object.date|date:"Y-m-d\TH:i:s\Z" }}">am {{ object.date|date:"l, \d\e\n d. F Y" }}</span>
+
+	</p>
+
+	<div class="clear">&nbsp;</div>
+
+	</div>
+
+	<div class="clear">&nbsp;</div>

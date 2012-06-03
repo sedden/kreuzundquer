@@ -23,9 +23,12 @@ urlpatterns = patterns('django.views.generic.date_based',
 )
 
 urlpatterns += patterns('django.views.generic.list_detail',
-	(r'^$', 'object_list',
-		{ 'queryset':archive_common['queryset'] },
-	),
+    (r'^page/(?P<page>\d+)/$', 'object_list',
+         { 'queryset':archive_common['queryset'], 'paginate_by':5,  },
+        ),
+    (r'^$', 'object_list',
+         { 'queryset':archive_common['queryset'], 'paginate_by':5, 'page':0 },
+        ),
 )
 
 

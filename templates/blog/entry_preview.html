@@ -1,29 +1,58 @@
-{% load comments %}
+{% load tagging_tags comments gravatar inlines %}
 
-	{% get_comment_count for object as comment_count %}
+{% get_comment_count for object as comment_count %}
 
-	<div class="post" about="{{ object.get_absolute_url }}">
+    <div class="post" about="{{ object.get_absolute_url }}">
+        <span class="alignright">{% gravatar_img_for_email object.author.email 60 %}</span>
 
-		{% if comment_count %}
-		<div class="alignright" style="background: #fff url('/static/img/comment.png') no-repeat right top; height: 22px; width: 22px; margin-right: 140px;">
-		<p style="text-align: center;"><a
-			style="color: #fff; text-decoration:none;"
-			href="{{ object.get_absolute_url }}#comments"
-			title="{{ comment_count }} Kommentar{{ comment_count|pluralize:"e" }}">{{ comment_count }}</a></p>
-		</div>
-		{% endif %}
+        {% if comment_count %}
+        <div class="alignright" style="background: #fff url('/static/img/comment.png') no-repeat right top; height: 22px; width: 22px; margin-right: 140px;">
+            <p style="text-align: center;"><a
+                    style="color: #fff; text-decoration:none;"
+                    href="{{ object.get_absolute_url }}#comments"
+                    title="{{ comment_count }} Kommentar{{ comment_count|pluralize:"e" }}">{{ comment_count }}</a></p>
+        </div>
+        {% endif %}
 
-	<h3><a property="dc:title" href="{{ object.get_absolute_url }}" title="{{ object.excerpt }}" >{{ object.title }}</a></h3>
+        <h3><a property="dc:title" href="{{ object.get_absolute_url }}">{{ object.title }}</a></h3>
 
-	<p>
-	  	<span property="dc:creator" content="{{ object.author.first_name }} {{ object.author.last_name }}">
-		Von {{ object.author.first_name }} {{ object.author.last_name }}</span>
-		<span property="dc:date" content="{{ object.date|date:"Y-m-d\TH:i:s\Z" }}">am {{ object.date|date:"l, \d\e\n d. F Y" }}</span>
+        <p>
+            <small property="dc:date" content="{{ object.date|date:" Y-m-d
+            \TH:i:s\Z" }}">
+            {{ object.date|date:"l, \d\e\n d. F Y" }}
+            </small><br/>
+            <small property="dc:creator" content="{{ object.author.first_name }} {{ object.author.last_name }}">
+                Autor: {{ object.author.first_name }} {{ object.author.last_name }}
+            </small>
+        </p>
 
-	</p>
+        <div class="clear">&nbsp;</div>
 
-	<div class="clear">&nbsp;</div>
+            <span class="justify">
+            {{ object.body_html|safe|render_inlines }}
+            </span>
 
-	</div>
+        <div class="clear">&nbsp;</div>
 
-	<div class="clear">&nbsp;</div>
+    </div>
+
+{% tags_for_object object as tags %}
+
+    {% if tags %}
+    <p class="meta"><small>Schlagw&ouml;rter:
+        {% for tag in tags %}
+        <span><a rel="tag" href="/blog/{{ tag.name|slugify }}/">{{ tag.name }}</a></span>
+        {% endfor %}
+    </small></p>
+    {% endif %}
+
+    <p class="meta"><small>
+        Der Beitrag wurde am {{ object.date|date:"d.m.Y" }} unter dem Titel
+        &#8220;{{ object.title  }}&#8221; veröffentlicht.
+        {% if object.enable_comments %}
+        Du kannst einen <a href="{{ object.get_absolute_url }}#respond">Kommentar</a> abgeben.
+        {% endif %}
+    </small></p>
+
+<div class="clear" style="margin-bottom: 20px;">&nbsp;</div>
+
