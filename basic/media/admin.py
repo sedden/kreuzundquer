@@ -14,6 +14,7 @@ admin.site.register(Audio, AudioAdmin)
 
 class PhotoSetAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
+    filter_horizontal = ('photos',)
 admin.site.register(PhotoSet, PhotoSetAdmin)
 
 
