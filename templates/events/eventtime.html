@@ -1,10 +1,21 @@
 {% load markup inlines %}
 
-<h3><a href="{{ eventtime.get_absolute_url }}">{{ eventtime.start|time }} Uhr - {{ eventtime.event.title }}</a></h3>
+<h3>
+{% if eventtime.is_all_day %}
+<a href="{{ eventtime.get_absolute_url }}">{{ eventtime.event.title }}</a>
+{% else %}
+<a href="{{ eventtime.get_absolute_url }}">{{ eventtime.start|time }} Uhr - {{ eventtime.event.title }}</a>
+{% endif %}
+</h3>
 {{ eventtime.event.description|markdown|render_inlines }}
 <p>
+{% if eventtime.is_all_day %}
+Start: {{ eventtime.start|date }}<br />
+{% if eventtime.end %}Ende: {{ eventtime.end|date }}{% endif %}
+{% else %}
 Start: {{ eventtime.start|time }} Uhr<br />
 {% if eventtime.end %}Ende: {{ eventtime.end|time }} Uhr{% endif %}
+{% endif %}
 </p>
 {% if eventtime.event.place %}
 <p>Wo: {{ eventtime.event.place }}</p>
