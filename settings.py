@@ -125,6 +125,7 @@ MARKITUP_SKIN = 'markitup/skins/simple'
 MARKITUP_PREVIEW_FILTER = ('markdown.markdown', {'safe_mode': True})
 
 GRAVATAR_DEFAULT_IMAGE = 'http://www.kreuzundquer-ev.de' + MEDIA_URL + 'img/gravatar.png'
+GRAVATAR_URL_PREFIX = 'http://en.gravatar.com/'
 
 ROBOTS_CACHE_TIMEOUT = 60*60*24
 
