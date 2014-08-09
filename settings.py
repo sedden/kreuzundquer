@@ -5,12 +5,12 @@ from os import path
 PRJ_DIR = path.abspath(path.dirname(__file__))
 PRJ_NAME = path.basename(PRJ_DIR)
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 FORCE_SCRIPT_NAME=""
 
 APPEND_SLASH = False
-PREPEND_WWW = True
+#PREPEND_WWW = True
 
 EMAIL_SUBJECT_PREFIX = "[KUQ] "
 SERVER_EMAIL = "webmaster@kreuzundquer-ev.de"
@@ -29,12 +29,24 @@ MANAGERS = (
 )
 
 
-DATABASE_ENGINE = 'postgresql_psycopg2'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
-DATABASE_NAME = PRJ_NAME       # Or path to database file if using sqlite3.
-DATABASE_USER = ''             # Not used with sqlite3.
-DATABASE_PASSWORD = ''         # Not used with sqlite3.
-DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
+#DATABASE_ENGINE = 'postgresql_psycopg2'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
+#DATABASE_NAME = PRJ_NAME       # Or path to database file if using sqlite3.
+#DATABASE_USER = ''             # Not used with sqlite3.
+#DATABASE_PASSWORD = ''         # Not used with sqlite3.
+#DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
+#DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'kreuzundquer.db',                      # Or path to database file if using sqlite3.
+        'USER': '',                      # Not used with sqlite3.
+        'PASSWORD': '',                  # Not used with sqlite3.
+        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+    }
+}
+
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -49,7 +61,7 @@ LANGUAGE_CODE = 'de'
 
 DEFAULT_ENCODING='utf-8'
 
-SITE_ID = 2
+SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -68,18 +80,16 @@ TIME_FORMAT = 'H\:i'
 #YEAR_MONTH_FORMAT = ''
 #MONTH_DAY_FORMAT = ''
 
-# Absolute path to the directory that holds media.
-# Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = path.join(PRJ_DIR,'static')
+STATIC_ROOT = path.join(PRJ_DIR, 'static/root')
+STATIC_URL = '/static/'
 
-# URL that handles the media served from MEDIA_ROOT.
-# Example: "http://media.lawrence.com"
-MEDIA_URL = '/static/'
+MEDIA_ROOT = path.join(PRJ_DIR,'static/media')
+MEDIA_URL = '/media/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/'
+#ADMIN_MEDIA_PREFIX = '/media/'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '^b@a&fmybr=g5&i#dg106f8-out^7v3ch&z-rb6c30pglh5)nn'
@@ -90,14 +100,14 @@ LOGIN_REDIRECT_URL = '/'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.load_template_source',
-    'django.template.loaders.app_directories.load_template_source',
-    'django.template.loaders.eggs.load_template_source',
-    'dbtemplates.loader.load_template_source',
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+    'django.template.loaders.eggs.Loader',
+    'dbtemplates.loader.Loader',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.core.context_processors.auth',
+    'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.debug',
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
@@ -107,6 +117,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.gzip.GZipMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
 )
@@ -130,18 +141,20 @@ GRAVATAR_URL_PREFIX = 'http://en.gravatar.com/'
 ROBOTS_CACHE_TIMEOUT = 60*60*24
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django.contrib.admin',
     'django.contrib.flatpages',
     'django.contrib.markup',
     'django.contrib.humanize',
     'django.contrib.sitemaps',
     'django.contrib.syndication',
     'django.contrib.comments',
-    'reversion',
+#    'reversion',
     'blog',
     'flatpages',
     'contact_form',
@@ -150,7 +163,7 @@ INSTALLED_APPS = (
     'gravatar',
     'robots',
     'dbtemplates',
-    'imagekit',
+#    'imagekit',
     'basic.media',
     'basic.inlines',
     'basic.places',

@@ -6,7 +6,7 @@
         <span class="alignright">{% gravatar_img_for_email object.author.email 60 %}</span>
 
         {% if comment_count %}
-        <div class="alignright" style="background: #fff url('/static/img/comment.png') no-repeat right top; height: 22px; width: 22px; margin-right: 140px;">
+        <div class="alignright" style="background: #fff url('{{ MEDIA_URL }}img/comment.png') no-repeat right top; height: 22px; width: 22px; margin-right: 140px;">
             <p style="text-align: center;"><a
                     style="color: #fff; text-decoration:none;"
                     href="{{ object.get_absolute_url }}#comments"

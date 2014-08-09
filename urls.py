@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.contrib.sitemaps import FlatPageSitemap, GenericSitemap
 
 from blog.urls import archive_common
-from blog.feeds import LatestEntriesAtom, LatestCommentsAtom
+#from blog.feeds import LatestEntriesAtom, LatestCommentsAtom
 from basic.events.sitemaps import EventTimeSitemap
 
 # Admin
@@ -17,7 +17,7 @@ urlpatterns = patterns('',
 # Debug? Serve static files!
 if settings.DEBUG:
     urlpatterns += patterns('',
-        (r'^static/(?P<path>.*)$', 'django.views.static.serve',
+        (r'^media/(?P<path>.*)$', 'django.views.static.serve',
            {
             'document_root': settings.PRJ_DIR+'/static',
             'show_indexes': True
@@ -76,15 +76,15 @@ if 'django.contrib.sitemaps' in settings.INSTALLED_APPS:
 	)
 
 # Feeds
-if 'django.contrib.syndication' in settings.INSTALLED_APPS:
-	urlpatterns += patterns('',
-		(r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed', {
-			'feed_dict': {
-				'atom': LatestEntriesAtom,
-				'comments-atom': LatestCommentsAtom
-			} }
-		),
-	)
+#if 'django.contrib.syndication' in settings.INSTALLED_APPS:
+	#urlpatterns += patterns('',
+		#(r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed', {
+			#'feed_dict': {
+				#'atom': LatestEntriesAtom,
+				#'comments-atom': LatestCommentsAtom
+			#} }
+		#),
+	#)
 
 # Rosetta
 if 'rosetta' in settings.INSTALLED_APPS:
