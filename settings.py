@@ -119,7 +119,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
 )
 
 ROOT_URLCONF = PRJ_NAME+'.urls'
@@ -154,7 +155,7 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.syndication',
     'django.contrib.comments',
-#    'reversion',
+    'reversion',
     'blog',
     'flatpages',
     'contact_form',
@@ -163,7 +164,7 @@ INSTALLED_APPS = (
     'gravatar',
     'robots',
     'dbtemplates',
-#    'imagekit',
+    'imagekit',
     'basic.media',
     'basic.inlines',
     'basic.places',
