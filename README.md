@@ -31,6 +31,11 @@ Synchronisieren/Erstellen der Datenbank:
     python manage.py syncdb
 
 
+#### Setzen der Umgebungsvariablen fuer S3:
+
+    export AWS_ACCESS_KEY_ID=...
+    export AWS_SECRET_ACCESS_KEY=...
+
 #### Start des Webservers:
 
     python manage.py runserver

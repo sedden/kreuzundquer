@@ -1,6 +1,6 @@
 # Django settings for simplewiki project.
 
-from os import path
+from os import path, environ
 
 PRJ_DIR = path.abspath(path.dirname(__file__))
 PRJ_NAME = path.basename(PRJ_DIR)
@@ -83,8 +83,19 @@ TIME_FORMAT = 'H\:i'
 STATIC_ROOT = path.join(PRJ_DIR, 'static/root')
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = path.join(PRJ_DIR,'static/media')
-MEDIA_URL = '/media/'
+AWS_QUERYSTRING_AUTH = False
+AWS_S3_SECURE_URLS = False
+AWS_ACCESS_KEY_ID = environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = environ['AWS_SECRET_ACCESS_KEY']
+AWS_STORAGE_BUCKET_NAME = environ['S3_BUCKET_NAME']
+
+#MEDIA_ROOT = path.join(PRJ_DIR,'static/media')
+MEDIA_URL = 'http://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
+#MEDIA_URL = 'http://%s.s3-website.eu-west-1.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
+#MEDIA_URL = '/media/'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+#DEFAULT_FILE_STORAGE = 'storages.backends.s3.S3Storage'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -136,7 +147,8 @@ MARKITUP_SET = 'markitup/sets/markdown'
 MARKITUP_SKIN = 'markitup/skins/simple'
 MARKITUP_PREVIEW_FILTER = ('markdown.markdown', {'safe_mode': True})
 
-GRAVATAR_DEFAULT_IMAGE = 'http://www.kreuzundquer-ev.de' + MEDIA_URL + 'img/gravatar.png'
+#GRAVATAR_DEFAULT_IMAGE = 'http://www.kreuzundquer-ev.de' + MEDIA_URL + 'img/gravatar.png'
+GRAVATAR_DEFAULT_IMAGE = MEDIA_URL + 'img/gravatar.png'
 GRAVATAR_URL_PREFIX = 'http://en.gravatar.com/'
 
 ROBOTS_CACHE_TIMEOUT = 60*60*24
@@ -155,6 +167,7 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.syndication',
     'django.contrib.comments',
+    'storages',
     'reversion',
     'blog',
     'flatpages',
