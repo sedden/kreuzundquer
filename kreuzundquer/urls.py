@@ -15,16 +15,16 @@ urlpatterns = patterns('',
 )
 
 # Debug? Serve static files!
-if settings.DEBUG:
-    urlpatterns += patterns('',
-        (r'^media/(?P<path>.*)$', 'django.views.static.serve',
-           {
-            'document_root': settings.PRJ_DIR+'/static',
-            'show_indexes': True
-	   }
-        ),
-        (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    )
+#if settings.DEBUG:
+#    urlpatterns += patterns('',
+#        (r'^media/(?P<path>.*)$', 'django.views.static.serve',
+#           {
+#            'document_root': settings.BASE_DIR+'/staticfiles',
+#            'show_indexes': True
+#	   }
+#        ),
+#        (r'^admin/doc/', include('django.contrib.admindocs.urls')),
+#    )
 
 # MarkItUp
 if 'markitup' in settings.INSTALLED_APPS:

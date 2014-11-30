@@ -35,11 +35,24 @@ Synchronisieren/Erstellen der Datenbank:
 
     export AWS_ACCESS_KEY_ID=...
     export AWS_SECRET_ACCESS_KEY=...
+    export S3_BUCKET_NAME=django-kreuzundquer
 
 #### Start des Webservers:
 
+Static Files zusammentragen (nach `kreuzundquer/sitestatic/` kopieren):
+
+    python manage.py collectstatic
+
+Server starten, Variante 1:
+
     python manage.py runserver
+
+Server starten, Variante 2:
+
+    foreman start
 
 #### Aufruf der Webseite: 
 
-<http://localhost:8000/>
+Nach Variante 1: <http://localhost:8000/>
+
+Nach Variante 2: <http://localhost:5000/>

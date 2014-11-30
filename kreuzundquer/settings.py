@@ -1,9 +1,12 @@
-# Django settings for simplewiki project.
+import os
 
-from os import path, environ
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-PRJ_DIR = path.abspath(path.dirname(__file__))
-PRJ_NAME = path.basename(PRJ_DIR)
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -28,24 +31,22 @@ MANAGERS = (
     ('Susann Jenkner', 'susann@kreuzundquer-ev.de'),
 )
 
-
-#DATABASE_ENGINE = 'postgresql_psycopg2'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
-#DATABASE_NAME = PRJ_NAME       # Or path to database file if using sqlite3.
-#DATABASE_USER = ''             # Not used with sqlite3.
-#DATABASE_PASSWORD = ''         # Not used with sqlite3.
-#DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
-#DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
-
+# Databases
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'kreuzundquer.db',                      # Or path to database file if using sqlite3.
+        'NAME': 'kreuzundquer.db',       # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
+
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
+if 'DATABASE_URL' in os.environ:
+    DATABASES['default'] = dj_database_url.config()
 
 
 # Local time zone for this installation. Choices can be found here:
@@ -80,14 +81,22 @@ TIME_FORMAT = 'H\:i'
 #YEAR_MONTH_FORMAT = ''
 #MONTH_DAY_FORMAT = ''
 
-STATIC_ROOT = path.join(PRJ_DIR, 'static/root')
+# Static asset configuration
+STATIC_ROOT = os.path.join(BASE_DIR, 'sitestatic')
+#STATIC_ROOT = 'static'
 STATIC_URL = '/static/'
+
+# Additional static filed
+STATICFILES_DIRS = (
+  os.path.join(BASE_DIR, 'static'),
+)
+
 
 AWS_QUERYSTRING_AUTH = False
 AWS_S3_SECURE_URLS = False
-AWS_ACCESS_KEY_ID = environ['AWS_ACCESS_KEY_ID']
-AWS_SECRET_ACCESS_KEY = environ['AWS_SECRET_ACCESS_KEY']
-AWS_STORAGE_BUCKET_NAME = environ['S3_BUCKET_NAME']
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET_NAME']
 
 #MEDIA_ROOT = path.join(PRJ_DIR,'static/media')
 MEDIA_URL = 'http://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
@@ -122,6 +131,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.debug',
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
+    'django.core.context_processors.static',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -134,13 +144,13 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = PRJ_NAME+'.urls'
+ROOT_URLCONF = 'kreuzundquer.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    path.join(PRJ_DIR,'templates'),
+    os.path.join(BASE_DIR, 'templates'),
 )
 
 MARKITUP_SET = 'markitup/sets/markdown'
