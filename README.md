@@ -56,3 +56,47 @@ Server starten, Variante 2:
 Nach Variante 1: <http://localhost:8000/>
 
 Nach Variante 2: <http://localhost:5000/>
+
+#### Deployment auf Heroku und wichtige Befehle:
+
+Aktuellen Branch deployen:
+
+    git push heroku django1.4:master
+
+Einen Blick auf die Logs werfen:
+
+    heroku logs
+
+Aktuelle Konfiguration anzeigen:
+
+    heroku config
+
+Konfiguration fuer S3 setzen:
+
+    heroku config:set AWS_ACCESS_KEY_ID=...
+
+    heroku config:set AWS_SECRET_ACCESS_KEY=...
+
+    heroku config:set S3_BUCKET_NAME=django-kreuzundquer
+
+Datenbank-Update durchfuehren:
+
+    heroku run python manage.py syncdb
+
+Auf Datenbank verbinden:
+
+    heroku pg:psql --app kuq HEROKU_POSTGRESQL_COBALT
+
+Datenbank Backup wiederherstellen:
+
+    heroku pgbackups:restore DATABASE 'http://django-kreuzundquer.s3-eu-west-1.amazonaws.com/kreuzundquer3.dump'
+
+Wichtige DB-Queries:
+
+    SELECT SUM(n_live_tup) FROM pg_stat_user_tables;
+
+    SELECT schemaname,relname,n_live_tup
+    FROM pg_stat_user_tables
+    ORDER BY n_live_tup DESC;
+
+
