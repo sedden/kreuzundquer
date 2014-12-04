@@ -18,3 +18,4 @@ psycopg2==2.5.4
 six==1.8.0
 static3==0.5.1
 wsgiref==0.1.2
+newrelic==2.40.0.34
