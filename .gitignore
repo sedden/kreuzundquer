@@ -1,0 +1,7 @@
+.idea/
+venv/
+*.dump
+
+# output
+import.xml
+photos.sh
